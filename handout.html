@@ -240,101 +240,36 @@
       .nav, .feature-nav, .hero, .steps, .nav-buttons, .footer { display: none !important; }
       .section { display: none !important; padding: 0 !important; border: none !important; }
       #section-3 { display: block !important; padding: 0 !important; border: none !important; margin: 0 !important; }
-      .editor { display: block !important; width: 100% !important; margin: 0 !important; }
+      .editor { display: block !important; margin: 0 !important; }
       .editor-fields { display: none !important; }
       .editor-preview {
         display: block !important;
         background: transparent !important;
         padding: 0 !important;
         margin: 0 !important;
-        width: 100% !important;
-      }
-      .preview-label { display: none !important; }
-
-      /* Handout füllt exakt A4 */
-      .handout {
-        display: block !important;
-        max-width: 100% !important;
         width: 210mm !important;
         height: 297mm !important;
-        min-height: unset !important;
+        overflow: hidden !important;
+      }
+      .preview-label { display: none !important; }
+      .handout {
+        width: 300px !important;
+        max-width: 300px !important;
+        min-height: 380px !important;
+        height: 380px !important;
+        transform: scale(2.65) !important;
+        transform-origin: top left !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         background-size: cover !important;
         background-position: center !important;
-        padding: 20mm 18mm !important;
         margin: 0 !important;
-        position: relative !important;
         overflow: hidden !important;
       }
-
-      /* Alle unsichtbaren Handouts wirklich versteckt lassen */
       .handout[style*="display:none"],
-      .handout[style*="display: none"] { display: none !important; height: 0 !important; }
-
-      /* Schriften skaliert auf A4 */
-      .ho-steckbrief .ho-h1 { font-size: 32px !important; letter-spacing: 6px !important; }
-      .ho-steckbrief .ho-h2 { font-size: 13px !important; }
-      .ho-steckbrief .ho-header { padding: 16px 24px !important; }
-      .ho-bild { width: 130px !important; height: 170px !important; font-size: 48px !important; }
-      .ho-name { font-size: 24px !important; margin-bottom: 16px !important; }
-      .ho-row { font-size: 14px !important; padding: 6px 0 !important; }
-      .ho-key { font-size: 11px !important; }
-      .ho-val { font-size: 14px !important; }
-      .ho-footer { padding: 14px 24px !important; margin: 20px -18mm -20mm !important; }
-      .ho-vergeltung { font-size: 28px !important; }
-      .ho-vergeltung-label { font-size: 11px !important; }
-      .ho-ausgestellt-val { font-size: 13px !important; }
-
-      .ho-siegel { font-size: 40px !important; }
-      .ho-absender { font-size: 20px !important; }
-      .ho-von { font-size: 11px !important; }
-      .ho-anrede { font-size: 15px !important; margin-bottom: 14px !important; }
-      .ho-text { font-size: 15px !important; line-height: 1.9 !important; }
-      .ho-unterschrift { font-size: 30px !important; }
-      .ho-titel { font-size: 12px !important; }
-
-      .ho-aushang-titel { font-size: 38px !important; }
-      .ho-aushang-item { font-size: 16px !important; padding: 5px 0 !important; }
-      .ho-aushang-section { font-size: 12px !important; margin: 18px 0 8px !important; }
-      .ho-aushang-special-text { font-size: 16px !important; }
-
-      .ho-zeitung-name { font-size: 42px !important; }
-      .ho-zeitung-datum { font-size: 12px !important; }
-      .ho-zeitung-schlagzeile { font-size: 22px !important; margin-bottom: 12px !important; }
-      .ho-zeitung-text { font-size: 14px !important; line-height: 1.8 !important; column-count: 2 !important; column-gap: 20px !important; }
-
-      .ho-tagebuch-datum { font-size: 13px !important; }
-      .ho-tagebuch-text { font-size: 16px !important; min-height: unset !important; line-height: 2 !important; }
-      .ho-tagebuch-autor { font-size: 26px !important; }
-
-      .ho-gilde-siegel { font-size: 48px !important; }
-      .ho-gilde-name { font-size: 18px !important; }
-      .ho-gilde-aufgabe { font-size: 20px !important; margin-bottom: 14px !important; }
-      .ho-gilde-details { font-size: 15px !important; line-height: 1.8 !important; }
-      .ho-gilde-belohnung { font-size: 22px !important; }
-
-      .ho-fracht-titel { font-size: 20px !important; }
-      .ho-fracht-table { font-size: 14px !important; }
-      .ho-fracht-table th { font-size: 12px !important; padding: 8px !important; }
-      .ho-fracht-table td { padding: 8px !important; }
-      .ho-fracht-stempel { width: 80px !important; height: 80px !important; font-size: 10px !important; }
-
-      .ho-kult-symbol { font-size: 48px !important; }
-      .ho-kult-titel { font-size: 18px !important; }
-      .ho-kult-text { font-size: 15px !important; line-height: 1.9 !important; }
-      .ho-kult-warnung { font-size: 12px !important; }
-
-      .ho-monster-titel { font-size: 16px !important; }
-      .ho-monster-name { font-size: 26px !important; }
-      .ho-monster-row { font-size: 15px !important; padding: 5px 0 !important; }
-      .ho-monster-key { font-size: 12px !important; }
-      .ho-monster-notiz { font-size: 14px !important; line-height: 1.8 !important; }
-      .ho-monster-signatur { font-size: 24px !important; }
-
-      .ho-karte-titel { font-size: 20px !important; }
-      .ho-karte-rahmen { min-height: 280px !important; }
-      .ho-karte-eintrag { font-size: 14px !important; padding: 4px 0 !important; }
+      .handout[style*="display: none"] { display: none !important; transform: none !important; height: 0 !important; }
+      .ho-tagebuch-text { min-height: unset !important; }
+      .ho-zeitung-text { column-count: 1 !important; }
     }
 
     @media (max-width: 600px) {
