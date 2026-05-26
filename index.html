@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velundr — Worldbuilding für Spielleiter & Autoren</title>
+  <meta name="description" content="Velundr hilft dir, lebendige Welten zu erschaffen, mit KI die deine Lore kennt, Charaktere generiert und Konsistenz prüft. Für Spielleiter und Autoren die mehr wollen als eine Datenbank." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    @font-face { font-display: block; font-family: Roboto; src: url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2") }
+    @font-face { font-display: fallback; font-family: Roboto; font-weight: 700; src: url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/3ef7cf158f310cf752d5ad08cd0e7e60.woff2) format("woff2") }
+    :where(.sib-form-message-panel) { display: none; }
+    :where(.sib-form-message-panel .sib-notification__icon) { width: 20px; height: 20px; }
+    #sib-container input::placeholder { font-family: Helvetica, sans-serif; color: #b09060; }
+  </style>
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #2c1a08; font-family: 'Spectral', Georgia, serif; min-height: 100vh; display: flex; justify-content: center; }
+    .page { background: #f5edd8; width: 100%; max-width: 860px; border-left: 1px solid #d4b870; border-right: 1px solid #d4b870; }
+
+    /* TOP NAV */
+    .nav { background: #e8d9b0; border-bottom: 2px solid #c9963a; padding: 12px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+    .nav-left { display: flex; align-items: baseline; gap: 10px; }
+    .nav-logo { font-family: 'Cinzel', serif; font-size: 18px; color: #5c3a0a; letter-spacing: 3px; font-weight: 700; text-decoration: none; }
+    .nav-sub { font-family: 'Cinzel', serif; font-size: 10px; color: #a87828; letter-spacing: 2px; }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-link { font-family: 'Cinzel', serif; font-size: 11px; color: #7a5020; letter-spacing: 1px; text-decoration: none; padding: 5px 12px; border: 1px solid #c9963a; border-radius: 3px; transition: all 0.2s; }
+    .nav-link:hover { background: rgba(168,120,40,0.15); color: #5c3a0a; }
+    .nav-badge { font-family: 'Cinzel', serif; font-size: 10px; color: #a08050; letter-spacing: 1px; }
+
+    /* FEATURE NAV */
+    .feature-nav { background: #f0e4c4; border-bottom: 1px solid #d4b870; padding: 0 40px; display: flex; gap: 0; }
+    .feature-nav-item { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px; padding: 12px 16px; color: #5c3a0a; text-decoration: none; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; font-weight: 600; }
+    .feature-nav-item:hover { color: #3a1a05; border-bottom-color: #c9963a; background: rgba(168,120,40,0.06); }
+    .feature-nav-item.active { color: #3a1a05; border-bottom-color: #5c3a0a; font-weight: 600; }
+
+    /* HERO */
+    .hero { padding: 52px 60px 44px; text-align: center; background: #f0e4c4; border-bottom: 1px solid #d4b870; }
+    .hero-seal { font-size: 40px; margin-bottom: 12px; display: block; }
+    .hero-eyebrow { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px; color: #a87828; margin-bottom: 12px; }
+    .hero-h1 { font-family: 'Cinzel', serif; font-size: 32px; color: #3a1a05; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; line-height: 1.25; }
+    .hero-sub { font-size: 17px; color: #7a5020; font-style: italic; margin-bottom: 22px; }
+    .hero-desc { font-size: 16px; color: #5c3a0a; line-height: 1.8; max-width: 540px; margin: 0 auto 32px; }
+
+    /* BREVO FORM */
+    .brevo-wrap { max-width: 480px; margin: 0 auto; }
+    .brevo-wrap .sib-form { background: transparent !important; padding: 0 !important; text-align: center; }
+    .brevo-wrap #sib-container { background: transparent !important; border: none !important; max-width: 100% !important; padding: 0 !important; }
+    .brevo-wrap .sib-form-block p { display: none !important; }
+    .brevo-wrap .entry__label { display: none !important; }
+    .brevo-wrap .entry__specification { display: none !important; }
+    .brevo-wrap .input { width: 100% !important; padding: 13px 18px !important; background: #faf4e4 !important; border: 1px solid #c9963a !important; border-radius: 3px !important; color: #3a1a05 !important; font-family: 'Spectral', serif !important; font-size: 16px !important; }
+    .brevo-wrap .sib-form-block__button { width: 100% !important; padding: 13px !important; margin-top: 8px !important; background: #5c3a0a !important; border: none !important; border-radius: 3px !important; color: #f5edd8 !important; font-family: 'Cinzel', serif !important; font-size: 12px !important; letter-spacing: 2px !important; font-weight: 700 !important; cursor: pointer !important; }
+    .brevo-wrap .sib-form-block__button:hover { background: #7a5020 !important; }
+    .brevo-wrap #success-message { background-color: #e8d9b0 !important; border-color: #c9963a !important; color: #3a1a05 !important; border-radius: 4px !important; max-width: 100% !important; }
+    .brevo-wrap #error-message { max-width: 100% !important; }
+    .form-note { font-size: 12px; color: #a08050; font-style: italic; text-align: center; margin-top: 10px; }
+
+    /* GIFT */
+    .gift { display: flex; align-items: center; gap: 16px; background: #e8d9b0; border: 1px solid #c9963a; border-radius: 4px; padding: 14px 18px; max-width: 480px; margin: 20px auto 0; text-align: left; }
+    .gift-icon { font-size: 28px; flex-shrink: 0; }
+    .gift-title { font-family: 'Cinzel', serif; font-size: 12px; color: #3a1a05; margin-bottom: 3px; }
+    .gift-sub { font-size: 13px; color: #7a5020; font-style: italic; line-height: 1.4; }
+
+    /* DIVIDER */
+    .divider { text-align: center; padding: 20px; color: #c9963a; font-size: 18px; letter-spacing: 8px; }
+
+    /* ROADMAP */
+    .roadmap { padding: 36px 40px; background: #f5edd8; border-top: 1px solid #d4b870; }
+    .roadmap-title { font-family: 'Cinzel', serif; font-size: 16px; color: #3a1a05; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px; text-align: center; }
+    .roadmap-sub { font-size: 14px; color: #7a5020; font-style: italic; text-align: center; margin-bottom: 28px; }
+    .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .roadmap-card { border-radius: 5px; padding: 16px; }
+    .roadmap-card.live { background: #e8f5e9; border: 1px solid #81c784; }
+    .roadmap-card.soon { background: #fff8e1; border: 1px solid #ffd54f; }
+    .roadmap-card.later { background: #f5edd8; border: 1px solid #d4b870; }
+    .roadmap-card-tag { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; margin-bottom: 8px; display: block; }
+    .roadmap-card.live .roadmap-card-tag { color: #2e7d32; }
+    .roadmap-card.soon .roadmap-card-tag { color: #f57f17; }
+    .roadmap-card.later .roadmap-card-tag { color: #a87828; }
+    .roadmap-card-title { font-family: 'Cinzel', serif; font-size: 12px; color: #3a1a05; margin-bottom: 6px; letter-spacing: 0.5px; }
+    .roadmap-item { font-size: 12px; color: #5c3a0a; line-height: 1.7; padding-left: 10px; border-left: 2px solid rgba(0,0,0,0.1); margin-top: 4px; }
+
+    /* FEATURES */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 36px 40px; background: #f0e4c4; border-top: 1px solid #d4b870; }
+    .feat { background: #f5edd8; border: 1px solid #d4b870; border-radius: 4px; padding: 20px 16px; text-align: center; }
+    .feat-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+    .feat-title { font-family: 'Cinzel', serif; font-size: 11px; color: #5c3a0a; letter-spacing: 1px; margin-bottom: 6px; }
+    .feat-text { font-size: 13px; color: #7a5020; line-height: 1.55; }
+
+    /* QUOTE */
+    .quote { padding: 36px 60px; text-align: center; border-top: 1px solid #d4b870; background: #f5edd8; }
+    .quote-text { font-size: 18px; color: #5c3a0a; font-style: italic; line-height: 1.7; max-width: 500px; margin: 0 auto 12px; }
+    .quote-author { font-family: 'Cinzel', serif; font-size: 11px; color: #a87828; letter-spacing: 2px; }
+
+    /* FOOTER */
+    .footer { padding: 18px 40px; border-top: 1px solid #d4b870; text-align: center; background: #e8d9b0; }
+    .footer-brand { font-family: 'Cinzel', serif; font-size: 13px; color: #5c3a0a; letter-spacing: 2px; font-weight: 600; margin-bottom: 4px; }
+    .footer-legal { font-size: 11px; color: #a08050; letter-spacing: 0.5px; }
+    .footer-links { margin-top: 8px; font-size: 11px; }
+    .footer-links a { color: #a08050; text-decoration: none; margin: 0 8px; }
+    .footer-links a:hover { color: #5c3a0a; }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      body { padding: 0; }
+      .page { border: none; }
+      .nav { flex-direction: column; align-items: center; gap: 4px; padding: 10px 16px; text-align: center; }
+      .nav-left { flex-direction: column; align-items: center; gap: 2px; }
+      .nav-logo { font-size: 18px; }
+      .nav-right { flex-wrap: wrap; justify-content: center; }
+      .feature-nav { padding: 0 10px; overflow-x: auto; }
+      .feature-nav-item { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px; padding: 12px 16px; color: #5c3a0a; text-decoration: none; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; font-weight: 600; }
+      .hero { padding: 32px 20px 28px; }
+      .hero-h1 { font-size: 24px; }
+      .hero-desc { font-size: 15px; }
+      .roadmap-grid { grid-template-columns: 1fr; }
+      .features { grid-template-columns: repeat(2, 1fr); padding: 22px 16px; gap: 10px; }
+      .quote { padding: 24px 20px; }
+      .footer { padding: 14px 20px; }
+      .roadmap { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- TOP NAV -->
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="nav-logo">⧖ VELUNDR</div>
+        <div class="nav-sub">von Halvard Eldgrim</div>
+      </div>
+      <div class="nav-right">
+        <a href="about.html" class="nav-link">Über Velundr</a>
+        <span class="nav-badge">Early Access</span>
+      </div>
+    </nav>
+
+    <!-- FEATURE NAV -->
+    <nav class="feature-nav">
+      <a href="charaktererstellung.html" class="feature-nav-item">⚔️ Charaktererstellung</a>
+      <a href="randomizer.html" class="feature-nav-item">🎲 Randomizer</a>
+      <a href="handout.html" class="feature-nav-item">📜 Handouts</a>
+      <a href="roadmap.html" class="feature-nav-item">🗺️ Roadmap</a>
+      <a href="kontakt.html" class="feature-nav-item">✉️ Kontakt</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <span class="hero-seal">✦</span>
+      <div class="hero-eyebrow">Worldbuilding für Spielleiter & Autoren</div>
+      <h1 class="hero-h1">Deine Welt verdient<br>mehr als ein Notizbuch.</h1>
+      <p class="hero-sub">Velundr — wo Welten entstehen</p>
+      <p class="hero-desc">Velundr hilft dir, lebendige Welten zu erschaffen, mit KI die deine Lore kennt, Charaktere generiert und Konsistenz prüft. Für Spielleiter und Autoren die mehr wollen als eine Datenbank.</p>
+
+      <div class="brevo-wrap">
+        <div class="sib-form" style="text-align:center;background-color:transparent;">
+          <div id="sib-form-container" class="sib-form-container">
+            <div id="error-message" class="sib-form-message-panel" style="font-family:Helvetica,sans-serif;font-size:16px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;max-width:540px;">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon"><path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z"/></svg>
+                <span class="sib-form-message-panel__inner-text">Deine Anmeldung konnte nicht gespeichert werden. Bitte versuche es erneut.</span>
+              </div>
+            </div>
+            <div id="success-message" class="sib-form-message-panel" style="font-family:Helvetica,sans-serif;font-size:16px;text-align:left;color:#085229;background-color:#e7faf0;border-color:#13ce66;border-radius:3px;max-width:540px;">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon"><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z"/></svg>
+                <span class="sib-form-message-panel__inner-text">✦ Willkommen, Weltenweber! Schau in dein Postfach, dein PDF wartet auf dich.</span>
+              </div>
+            </div>
+            <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center;background-color:transparent;border:none;direction:ltr">
+              <form id="sib-form" method="POST" action="https://90cebd2d.sibforms.com/serve/MUIFAKG72HPk4QobFqmDb5mmj5nqVTfQ5WGRRBnFhwJMTVt827tQ6ex0KGph3hrslw28XX4Ca_DxSmNxCSipv21tMAA15bR3ZvNnSx6YwcuSbZTuL_1Yt7FRoMOndGE8LMclblMWRIM9CaZ3KVI5SE_Pxp8vBW6fzMKwBLJnMDiQxdrm06AeYkZaK1xT0ZyieyAsARN-j4NmcLNT8w==" data-type="subscription">
+                <div style="padding:8px 0;">
+                  <div class="sib-input sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row">
+                        <div class="entry__field">
+                          <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="deine@email.de" data-required="true" required />
+                        </div>
+                      </div>
+                      <label class="entry__error entry__error--primary" style="font-family:Helvetica,sans-serif;font-size:14px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;"></label>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:8px 0;">
+                  <div class="sib-form-block" style="text-align:center;">
+                    <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit" style="font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:2px;color:#f5edd8;background-color:#5c3a0a;border-width:0;border-radius:3px;width:100%;padding:13px;cursor:pointer;">
+                      <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512"><path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/></svg>
+                      JETZT ANMELDEN
+                    </button>
+                  </div>
+                </div>
+                <input type="text" name="email_address_check" value="" class="input--hidden">
+                <input type="hidden" name="locale" value="de">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="form-note">Kostenlos · Kein Spam · Jederzeit abmeldbar</p>
+
+      <div class="gift">
+        <div class="gift-icon">📖</div>
+        <div>
+          <div class="gift-title">Gratis bei Anmeldung</div>
+          <div class="gift-sub">Exklusiver Auszug aus "World Building — Wie man Welten schmiedet" von Halvard Eldgrim</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider">· · ·</div>
+
+    <!-- ROADMAP -->
+    <section class="roadmap" id="roadmap">
+      <div class="roadmap-title">Was Velundr werden soll</div>
+      <div class="roadmap-sub">Ein ehrlicher Blick auf das was kommt</div>
+      <div class="roadmap-grid">
+        <div class="roadmap-card live">
+          <span class="roadmap-card-tag">JETZT LIVE</span>
+          <div class="roadmap-card-title">Fundament</div>
+          <div class="roadmap-item">Charakterbogen D&D 5e</div>
+          <div class="roadmap-item">Waitlist & Community</div>
+          <div class="roadmap-item">Worldbuilding-Guide (Auszug)</div>
+        </div>
+        <div class="roadmap-card soon">
+          <span class="roadmap-card-tag">IN ARBEIT</span>
+          <div class="roadmap-card-title">Phase 2</div>
+          <div class="roadmap-item">Encounter Randomizer</div>
+          <div class="roadmap-item">Tabellen-Randomizer</div>
+          <div class="roadmap-item">Blog mit Worldbuilding-Tipps</div>
+          <div class="roadmap-item">Weitere Systeme (GURPS, DSA, Shadowrun...)</div>
+        </div>
+        <div class="roadmap-card later">
+          <span class="roadmap-card-tag">GEPLANT</span>
+          <div class="roadmap-card-title">Phase 3</div>
+          <div class="roadmap-item">KI-Lore-Assistent</div>
+          <div class="roadmap-item">Session-Planer</div>
+          <div class="roadmap-item">Kampagnen-Tracker</div>
+          <div class="roadmap-item">Map Generator</div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="quote">
+      <p class="quote-text">"Eine Welt lebt nicht durch Regeln, sondern durch das Bild, das du mit deinen Worten malst."</p>
+      <div class="quote-author">Halvard Eldgrim</div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-brand">Halvard Eldgrim</div>
+      <div class="footer-legal">© 2026 Andreas Hoffmann · Waldkappel-Bischhausen</div>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Wähle bitte einen Ländervorwahl aus.';
+    window.LOCALE = 'de';
+    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Die eingegebenen Informationen sind nicht gültig. Bitte überprüfe das Feldformat und versuche es erneut.";
+    window.REQUIRED_ERROR_MESSAGE = "Dieses Feld darf nicht leer sein.";
+    window.GENERIC_INVALID_MESSAGE = "Die eingegebenen Informationen sind nicht gültig.";
+    window.INVALID_NUMBER = "Die eingegebenen Informationen sind nicht gültig.";
+    window.INVALID_DATE = "Bitte gib ein gültiges Datum ein";
+    window.REQUIRED_MULTISELECT_MESSAGE = 'Wähle bitte mindestens eine Option aus';
+    window.translation = { common: { selectedList: '{quantity} Liste ausgewählt', selectedLists: '{quantity} Listen ausgewählt', selectedOption: '{quantity} ausgewählt', selectedOptions: '{quantity} ausgewählt' } };
+    var AUTOHIDE = Boolean(0);
+  </script>
+  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+
+</body>
+</html>

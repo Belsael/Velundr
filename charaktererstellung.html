@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velundr — Charaktererstellung</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #2c1a08; font-family: 'Spectral', Georgia, serif; min-height: 100vh; display: flex; justify-content: center; }
+    .page { background: #f5edd8; width: 100%; max-width: 860px; border-left: 1px solid #d4b870; border-right: 1px solid #d4b870; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .nav { background: #e8d9b0; border-bottom: 2px solid #c9963a; padding: 12px 40px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-left { display: flex; align-items: baseline; gap: 10px; }
+    .nav-logo { font-family: 'Cinzel', serif; font-size: 18px; color: #5c3a0a; letter-spacing: 3px; font-weight: 700; text-decoration: none; }
+    .nav-sub { font-family: 'Cinzel', serif; font-size: 10px; color: #a87828; letter-spacing: 2px; }
+    .nav-back { font-family: 'Cinzel', serif; font-size: 11px; color: #a08050; letter-spacing: 1px; text-decoration: none; }
+    .nav-back:hover { color: #5c3a0a; }
+
+    .hero { background: #f0e4c4; border-bottom: 1px solid #d4b870; padding: 44px 60px 36px; text-align: center; }
+    .hero-seal { font-size: 36px; margin-bottom: 10px; display: block; }
+    .hero-eyebrow { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: #a87828; margin-bottom: 10px; }
+    .hero-h1 { font-family: 'Cinzel', serif; font-size: 26px; color: #3a1a05; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+    .hero-sub { font-size: 15px; color: #7a5020; font-style: italic; }
+
+    .content { flex: 1; padding: 52px 60px; display: flex; flex-direction: column; align-items: center; }
+
+    .select-card { background: #f0e4c4; border: 1px solid #d4b870; border-radius: 6px; padding: 36px 40px; max-width: 560px; width: 100%; text-align: center; }
+    .select-title { font-family: 'Cinzel', serif; font-size: 15px; color: #3a1a05; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+    .select-sub { font-size: 14px; color: #7a5020; font-style: italic; margin-bottom: 28px; }
+
+    .system-select {
+      width: 100%;
+      padding: 13px 16px;
+      background: #faf4e4;
+      border: 1px solid #c9963a;
+      border-radius: 3px;
+      color: #3a1a05;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      outline: none;
+      margin-bottom: 20px;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a87828' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .system-select:focus { border-color: #5c3a0a; }
+    .system-select option { background: #faf4e4; font-family: Georgia, serif; }
+
+    .system-info { background: #f5edd8; border: 1px solid #d4b870; border-radius: 4px; padding: 14px 16px; margin-bottom: 24px; text-align: left; min-height: 60px; }
+    .system-info-title { font-family: 'Cinzel', serif; font-size: 12px; color: #3a1a05; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .system-info-desc { font-size: 13px; color: #7a5020; line-height: 1.6; }
+
+    .start-btn {
+      display: block;
+      width: 100%;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      padding: 14px;
+      background: #5c3a0a;
+      color: #f5edd8;
+      text-decoration: none;
+      border-radius: 3px;
+      font-weight: 700;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .start-btn:hover { background: #7a5020; }
+    .start-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .coming-soon { margin-top: 32px; width: 100%; max-width: 560px; }
+    .coming-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; color: #a87828; margin-bottom: 12px; text-align: center; }
+    .coming-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .coming-item { background: #f0e4c4; border: 1px solid #d4b870; border-radius: 4px; padding: 12px; text-align: center; opacity: 0.7; }
+    .coming-item-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+    .coming-item-name { font-family: 'Cinzel', serif; font-size: 10px; color: #5c3a0a; letter-spacing: 0.5px; margin-bottom: 2px; }
+    .coming-item-tag { font-size: 10px; color: #a08050; font-style: italic; }
+
+    .footer { padding: 16px 40px; border-top: 1px solid #d4b870; text-align: center; background: #e8d9b0; }
+    .footer-brand { font-family: 'Cinzel', serif; font-size: 12px; color: #5c3a0a; letter-spacing: 2px; font-weight: 600; margin-bottom: 3px; }
+    .footer-legal { font-size: 11px; color: #a08050; }
+    .footer-links { margin-top: 6px; font-size: 11px; }
+    .footer-links a { color: #a08050; text-decoration: none; margin: 0 8px; }
+    .footer-links a:hover { color: #5c3a0a; }
+
+    @media (max-width: 600px) {
+      body { padding: 0; }
+      .page { border: none; }
+      .nav { padding: 10px 16px; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+      .nav-left { flex-direction: column; align-items: center; gap: 2px; }
+      .hero { padding: 32px 20px 28px; }
+      .content { padding: 28px 20px; }
+      .select-card { padding: 24px 20px; }
+      .coming-grid { grid-template-columns: 1fr 1fr; }
+      .footer { padding: 14px 20px; }
+    }
+  
+    /* FEATURE NAV */
+    .feature-nav { background: #e8d9b0; border-bottom: 2px solid #c9963a; padding: 0 40px; display: flex; gap: 0; }
+    .feature-nav-item { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px; padding: 12px 16px; color: #5c3a0a; text-decoration: none; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; font-weight: 600; }
+    .feature-nav-item:hover { color: #3a1a05; border-bottom-color: #c9963a; background: rgba(168,120,40,0.1); }
+    .feature-nav-item.active { color: #3a1a05; border-bottom-color: #5c3a0a; background: rgba(168,120,40,0.08); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="nav-left">
+        <a href="index.html" class="nav-logo">⧖ VELUNDR</a>
+        <div class="nav-sub">von Halvard Eldgrim</div>
+      </div>
+      <a href="index.html" class="nav-back">← Zurück</a>
+    </nav>
+    <!-- FEATURE NAV -->
+    <nav class="feature-nav">
+      <a href="charaktererstellung.html" class="feature-nav-item active">⚔️ Charaktererstellung</a>
+      <a href="randomizer.html" class="feature-nav-item">🎲 Randomizer</a>
+      <a href="handout.html" class="feature-nav-item">📜 Handouts</a>
+      <a href="roadmap.html" class="feature-nav-item">🗺️ Roadmap</a>
+    </nav>
+
+    <div class="hero">
+      <span class="hero-seal">⚔️</span>
+      <div class="hero-eyebrow">Dein Abenteuer beginnt hier</div>
+      <h1 class="hero-h1">Charaktererstellung</h1>
+      <p class="hero-sub">Wähle dein System und erschaffe deinen Charakter.</p>
+    </div>
+
+    <div class="content">
+      <div class="select-card">
+        <div class="select-title">Welches System spielst du?</div>
+        <div class="select-sub">Wähle dein Rollenspielsystem aus dem Dropdown.</div>
+
+        <select class="system-select" id="systemSelect" onchange="updateInfo()">
+          <option value="">Bitte wählen...</option>
+          <option value="dnd5e">D&D 5e / 2024</option>
+          <option value="coming">Pathfinder 2e (demnächst)</option>
+          <option value="coming">GURPS (demnächst)</option>
+          <option value="coming">DSA 5 (demnächst)</option>
+          <option value="coming">Shadowrun (demnächst)</option>
+        </select>
+
+        <div class="system-info" id="systemInfo">
+          <div class="system-info-desc" style="color:#a08050;font-style:italic;">Wähle ein System um mehr Informationen zu sehen.</div>
+        </div>
+
+        <button class="start-btn" id="startBtn" onclick="startCharacter()" disabled>⚔️ Charakterbogen öffnen</button>
+      </div>
+
+      <div class="coming-soon">
+        <div class="coming-title">WEITERE SYSTEME IN ARBEIT</div>
+        <div class="coming-grid">
+          <div class="coming-item">
+            <span class="coming-item-icon">🎲</span>
+            <div class="coming-item-name">Pathfinder 2e</div>
+            <div class="coming-item-tag">demnächst</div>
+          </div>
+          <div class="coming-item">
+            <span class="coming-item-icon">📐</span>
+            <div class="coming-item-name">GURPS</div>
+            <div class="coming-item-tag">demnächst</div>
+          </div>
+          <div class="coming-item">
+            <span class="coming-item-icon">🐉</span>
+            <div class="coming-item-name">DSA 5</div>
+            <div class="coming-item-tag">demnächst</div>
+          </div>
+          <div class="coming-item">
+            <span class="coming-item-icon">🤖</span>
+            <div class="coming-item-name">Shadowrun</div>
+            <div class="coming-item-tag">demnächst</div>
+          </div>
+          <div class="coming-item">
+            <span class="coming-item-icon">🌑</span>
+            <div class="coming-item-name">Call of Cthulhu</div>
+            <div class="coming-item-tag">geplant</div>
+          </div>
+          <div class="coming-item">
+            <span class="coming-item-icon">⚙️</span>
+            <div class="coming-item-name">Weitere...</div>
+            <div class="coming-item-tag">auf Wunsch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-brand">Halvard Eldgrim</div>
+      <div class="footer-legal">© 2026 Andreas Hoffmann · Waldkappel-Bischhausen</div>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const SYSTEMS = {
+      dnd5e: {
+        title: 'Dungeons & Dragons 5e / 2024',
+        desc: 'Das meistgespielte Fantasy-Rollenspiel der Welt. Unser Charakterbogen unterstützt die aktuelle 2024er Edition auf Deutsch.',
+        url: 'charakterbogen.html'
+      }
+    };
+
+    function updateInfo() {
+      const val = document.getElementById('systemSelect').value;
+      const info = document.getElementById('systemInfo');
+      const btn = document.getElementById('startBtn');
+
+      if (val === 'dnd5e') {
+        const s = SYSTEMS[val];
+        info.innerHTML = `<div class="system-info-title">${s.title}</div><div class="system-info-desc">${s.desc}</div>`;
+        btn.disabled = false;
+        btn.textContent = '⚔️ Charakterbogen öffnen';
+      } else if (val === 'coming') {
+        info.innerHTML = '<div class="system-info-desc" style="color:#a08050;font-style:italic;">Dieses System ist noch in Arbeit. Trag dich in die Waitlist ein um benachrichtigt zu werden wenn es verfügbar ist.</div>';
+        btn.disabled = true;
+        btn.textContent = 'Demnächst verfügbar';
+      } else {
+        info.innerHTML = '<div class="system-info-desc" style="color:#a08050;font-style:italic;">Wähle ein System um mehr Informationen zu sehen.</div>';
+        btn.disabled = true;
+        btn.textContent = '⚔️ Charakterbogen öffnen';
+      }
+    }
+
+    function startCharacter() {
+      const val = document.getElementById('systemSelect').value;
+      if (SYSTEMS[val]) window.location.href = SYSTEMS[val].url;
+    }
+  </script>
+</body>
+</html>
