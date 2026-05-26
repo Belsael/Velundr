@@ -15,365 +15,423 @@
       background: #2c1a08;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      padding: 20px;
+      flex-direction: column;
     }
 
-    .wrapper { width: 100%; max-width: 900px; }
-
-    /* SCREEN NAV */
-    .screen-nav {
-      background: #0f0803;
-      border: 1px solid rgba(180,140,60,0.3);
-      border-radius: 6px;
-      padding: 12px 20px;
+    /* ── TOP NAV ── */
+    .nav {
+      background: #e8d9b0;
+      border-bottom: 2px solid #c9963a;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
-    }
-    .screen-logo { font-family: 'Cinzel', serif; font-size: 15px; color: #f0d080; letter-spacing: 3px; font-weight: 700; text-decoration: none; }
-    .screen-logo span { font-size: 9px; display: block; color: #a87828; letter-spacing: 2px; }
-    .btn-print {
-      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1px;
-      padding: 8px 20px; background: linear-gradient(135deg, #a87828, #c9963a);
-      border: none; border-radius: 3px; color: #0f0803; font-weight: 700;
-      cursor: pointer; transition: all 0.2s;
-    }
-    .btn-print:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(180,140,60,0.3); }
-
-    /* SHEET */
-    .sheet {
-      background: #faf4e4;
-      border: 1px solid #d4b870;
-      border-radius: 6px;
-      padding: 20px;
-      color: #1a0f05;
-    }
-
-    /* HEADER */
-    .sheet-header {
-      display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 2px solid #1a0f05;
-      padding-bottom: 10px;
-      margin-bottom: 14px;
+      padding: 0 24px;
+      height: 52px;
+      flex-shrink: 0;
     }
-    .sheet-logo { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; letter-spacing: 2px; }
-    .sheet-logo small { font-size: 8px; display: block; letter-spacing: 2px; color: #666; font-weight: 400; }
-    .sheet-system { font-family: 'Cinzel', serif; font-size: 11px; color: #a87828; letter-spacing: 1px; text-align: right; }
+    .nav-brand { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700; letter-spacing: 3px; color: #5c3a0a; text-decoration: none; }
+    .nav-by { font-family: 'Cinzel', serif; font-size: 10px; color: #a87828; letter-spacing: 1px; }
+    .nav-back { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1px; color: #5c3a0a; text-decoration: none; border: 1px solid #c9963a; padding: 6px 14px; border-radius: 3px; transition: all 0.2s; }
+    .nav-back:hover { background: #c9963a; color: #fff; }
+
+    /* ── FEATURE NAV ── */
+    .feature-nav { background: #e8d9b0; border-bottom: 2px solid #c9963a; display: flex; align-items: stretch; overflow-x: auto; flex-shrink: 0; }
+    .feature-nav-item { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px; padding: 12px 16px; color: #5c3a0a; text-decoration: none; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; font-weight: 600; }
+    .feature-nav-item:hover { border-bottom-color: #c9963a; background: rgba(201,150,58,0.08); }
+    .feature-nav-item.active { border-bottom-color: #c9963a; color: #a87828; }
+
+    /* ── CONTENT ── */
+    .content-area { flex: 1; padding: 24px 20px; }
+    .wrapper { width: 100%; max-width: 960px; margin: 0 auto; }
+
+    /* ── PAGE TABS ── */
+    .page-tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+    .tab-btn {
+      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1px; font-weight: 600;
+      padding: 8px 20px; border: 1px solid #c9963a; border-radius: 3px 3px 0 0;
+      background: #d4b870; color: #5c3a0a; cursor: pointer; transition: all 0.2s;
+      border-bottom: none;
+    }
+    .tab-btn.active { background: #faf4e4; color: #5c3a0a; border-bottom: 1px solid #faf4e4; position: relative; z-index: 1; }
+    .tab-btn:not(.active):hover { background: #c9963a; color: #fff; }
+
+    /* ── SHEET TOOLBAR ── */
+    .sheet-toolbar { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+    .btn-print { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1px; padding: 8px 20px; background: linear-gradient(135deg, #a87828, #c9963a); border: none; border-radius: 3px; color: #fff; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+    .btn-print:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(180,140,60,0.4); }
+
+    /* ── PAGE PANEL ── */
+    .page-panel { display: none; }
+    .page-panel.active { display: block; }
+
+    /* ── SHEET ── */
+    .sheet { background: #faf4e4; border: 1px solid #d4b870; border-radius: 0 6px 6px 6px; padding: 24px; color: #1a0f05; }
+
+    /* ornamental divider */
+    .ornament { text-align: center; color: #c9963a; font-size: 14px; letter-spacing: 6px; margin: 6px 0; opacity: 0.6; }
+
+    /* SHEET HEADER */
+    .sheet-header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-bottom: 2px solid #5c3a0a; padding-bottom: 12px; margin-bottom: 16px; gap: 16px; }
+    .sheet-logo { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; color: #5c3a0a; }
+    .sheet-logo small { font-size: 8px; display: block; letter-spacing: 3px; color: #a87828; font-weight: 400; margin-top: 2px; }
+    .sheet-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 3px; color: #a87828; text-align: center; }
+    .sheet-system { font-family: 'Cinzel', serif; font-size: 10px; color: #a87828; letter-spacing: 1px; text-align: right; line-height: 1.6; }
+
+    /* SECTION TITLE */
+    .sec { margin-bottom: 12px; }
+    .sec-title {
+      font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px;
+      color: #fff; text-transform: uppercase; background: #5c3a0a;
+      padding: 3px 8px; margin-bottom: 7px; display: inline-block;
+      border-radius: 2px; font-weight: 600;
+    }
+    .sec-title.wide { display: block; }
+    .sec-box { border: 1px solid #c9963a; border-radius: 4px; padding: 10px; background: #faf4e4; }
 
     /* FIELDS */
-    .sec { margin-bottom: 10px; }
-    .sec-title {
-      font-family: 'Cinzel', serif; font-size: 7.5px; letter-spacing: 2px;
-      color: #888; text-transform: uppercase; border-bottom: 1px solid #ccc;
-      padding-bottom: 2px; margin-bottom: 6px;
-    }
-
-    .field-row { display: flex; gap: 8px; margin-bottom: 6px; }
+    .field-row { display: flex; gap: 10px; margin-bottom: 7px; }
     .field { flex: 1; }
-    .field-label { font-family: 'Cinzel', serif; font-size: 7px; color: #999; letter-spacing: 1px; display: block; margin-bottom: 2px; }
-    .field input, .field textarea, .field select {
-      width: 100%; border: none; border-bottom: 1px solid #bbb;
-      background: transparent; font-family: 'Crimson Pro', serif; font-size: 13px;
+    .field-label { font-family: 'Cinzel', serif; font-size: 7px; color: #a87828; letter-spacing: 1px; display: block; margin-bottom: 2px; text-transform: uppercase; }
+    .field input, .field textarea {
+      width: 100%; border: none; border-bottom: 1px solid #c9963a;
+      background: transparent; font-family: 'Crimson Pro', serif; font-size: 14px;
       color: #1a0f05; padding: 2px 2px; outline: none;
     }
-    .field input:focus, .field textarea:focus { border-bottom-color: #a87828; }
-    .field textarea { resize: none; min-height: 40px; }
+    .field input:focus, .field textarea:focus { border-bottom-color: #5c3a0a; background: rgba(201,150,58,0.05); }
+    .field textarea { resize: none; border: 1px solid #c9963a; border-radius: 3px; padding: 5px; background: #f5edd8; }
 
     /* ATTRIBUTES */
-    .attr-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 10px; }
-    .attr-box {
-      border: 1px solid #bbb; border-radius: 4px; padding: 6px 4px;
-      text-align: center; background: #f5edd8;
-    }
-    .attr-name { font-family: 'Cinzel', serif; font-size: 7px; color: #888; letter-spacing: 1px; display: block; margin-bottom: 3px; }
-    .attr-score {
-      font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700;
-      width: 100%; text-align: center; border: none; background: transparent;
-      color: #1a0f05; outline: none; padding: 2px 0;
-    }
-    .attr-mod-label { font-family: 'Cinzel', serif; font-size: 6px; color: #aaa; letter-spacing: 1px; display: block; margin-top: 2px; }
-    .attr-mod { font-size: 12px; font-weight: 600; color: #3a1a05; }
+    .attr-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .attr-box { border: 1px solid #c9963a; border-radius: 5px; padding: 8px 4px 6px; text-align: center; background: #f5edd8; position: relative; }
+    .attr-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #c9963a, #a87828); border-radius: 5px 5px 0 0; }
+    .attr-name { font-family: 'Cinzel', serif; font-size: 6.5px; color: #a87828; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+    .attr-score { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; width: 100%; text-align: center; border: none; background: transparent; color: #5c3a0a; outline: none; padding: 2px 0; }
+    .attr-mod-wrap { border-top: 1px solid #c9963a; margin-top: 4px; padding-top: 4px; }
+    .attr-mod-label { font-family: 'Cinzel', serif; font-size: 5.5px; color: #a87828; letter-spacing: 1px; display: block; }
+    .attr-mod { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; color: #5c3a0a; }
 
-    /* COMBAT */
-    .combat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 10px; }
-    .combat-box {
-      border: 1px solid #bbb; border-radius: 4px; padding: 6px 4px;
-      text-align: center; background: #f5edd8;
-    }
-    .combat-label { font-family: 'Cinzel', serif; font-size: 6.5px; color: #888; letter-spacing: 0.5px; display: block; margin-bottom: 3px; }
-    .combat-input {
-      font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700;
-      width: 100%; text-align: center; border: none; background: transparent;
-      color: #1a0f05; outline: none; padding: 2px 0;
-    }
+    /* COMBAT BOXES */
+    .combat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .combat-box { border: 1px solid #c9963a; border-radius: 4px; padding: 7px 4px; text-align: center; background: #f5edd8; }
+    .combat-label { font-family: 'Cinzel', serif; font-size: 6px; color: #a87828; letter-spacing: 0.5px; display: block; margin-bottom: 4px; line-height: 1.3; }
+    .combat-val { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; width: 100%; text-align: center; border: none; background: transparent; color: #5c3a0a; outline: none; }
+    .combat-val[readonly] { cursor: default; }
+
+    /* HP SECTION */
+    .hp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .hp-box { border: 1px solid #c9963a; border-radius: 4px; padding: 7px 6px; text-align: center; background: #f5edd8; }
+    .hp-label { font-family: 'Cinzel', serif; font-size: 6px; color: #a87828; letter-spacing: 0.5px; display: block; margin-bottom: 3px; line-height: 1.3; }
+    .hp-input { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; width: 100%; text-align: center; border: none; background: transparent; color: #5c3a0a; outline: none; }
 
     /* DEATH SAVES */
-    .death-saves { display: flex; gap: 8px; align-items: center; }
-    .save-group { display: flex; gap: 4px; }
-    .save-circle {
-      width: 12px; height: 12px; border: 1px solid #bbb; border-radius: 50%;
-      cursor: pointer; transition: background 0.2s; flex-shrink: 0;
-    }
-    .save-circle.filled { background: #1a0f05; }
-    .save-label { font-family: 'Cinzel', serif; font-size: 7px; color: #888; letter-spacing: 1px; min-width: 60px; }
-
-    /* MAIN GRID */
-    .main-grid { display: grid; grid-template-columns: 180px 1fr; gap: 12px; }
-
-    /* SKILLS */
-    .skill-row {
-      display: flex; align-items: center; gap: 5px;
-      font-size: 11px; padding: 2px 0; color: #1a0f05;
-    }
-    .skill-circle {
-      width: 10px; height: 10px; border: 1px solid #bbb;
-      border-radius: 50%; cursor: pointer; flex-shrink: 0;
-      transition: background 0.2s;
-    }
-    .skill-circle.on { background: #1a0f05; border-color: #1a0f05; }
-    .skill-name { flex: 1; font-size: 10.5px; }
-    .skill-attr { font-size: 9px; color: #aaa; }
-    .skill-bonus { font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600; min-width: 24px; text-align: right; }
-
-    /* SAVES LIST */
-    .save-row {
-      display: flex; align-items: center; gap: 5px;
-      font-size: 11px; padding: 2px 0;
-    }
-
-    /* HP BOXES */
-    .hp-section { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-    .hp-box { border: 1px solid #bbb; border-radius: 4px; padding: 6px; text-align: center; background: #f5edd8; }
-    .hp-label { font-family: 'Cinzel', serif; font-size: 6.5px; color: #888; letter-spacing: 0.5px; display: block; margin-bottom: 2px; }
-    .hp-input { font-size: 16px; font-weight: 700; width: 100%; text-align: center; border: none; background: transparent; color: #1a0f05; outline: none; font-family: 'Cinzel', serif; }
-    .hp-sub { display: flex; gap: 4px; margin-top: 3px; }
-    .hp-sub-label { font-family: 'Cinzel', serif; font-size: 6px; color: #aaa; flex: 1; text-align: center; }
-
-    /* SPELL SLOTS */
-    .spell-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-    .spell-slot { border: 1px solid #ddd; border-radius: 3px; padding: 4px; text-align: center; }
-    .spell-slot-label { font-family: 'Cinzel', serif; font-size: 6px; color: #aaa; display: block; }
-    .spell-slot-input { width: 100%; border: none; background: transparent; text-align: center; font-size: 11px; outline: none; color: #1a0f05; }
-
-    /* WEAPONS TABLE */
-    .weapons-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-    .weapons-table th { font-family: 'Cinzel', serif; font-size: 7px; color: #888; letter-spacing: 1px; text-align: left; padding: 3px 4px; border-bottom: 1px solid #ccc; }
-    .weapons-table td { padding: 3px 4px; border-bottom: 1px solid #eee; }
-    .weapons-table td input { width: 100%; border: none; background: transparent; font-family: 'Crimson Pro', serif; font-size: 11px; color: #1a0f05; outline: none; }
-
-    /* COINS */
-    .coins-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
-    .coin-box { text-align: center; }
-    .coin-label { font-family: 'Cinzel', serif; font-size: 7px; color: #888; display: block; margin-bottom: 2px; }
-    .coin-input { width: 100%; border: none; border-bottom: 1px solid #bbb; background: transparent; text-align: center; font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: #1a0f05; outline: none; }
+    .death-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; flex-wrap: wrap; }
+    .death-label { font-family: 'Cinzel', serif; font-size: 7px; color: #a87828; letter-spacing: 1px; }
+    .circle-group { display: flex; gap: 5px; align-items: center; }
+    .d-circle { width: 13px; height: 13px; border: 1.5px solid #c9963a; border-radius: 50%; cursor: pointer; transition: background 0.2s; flex-shrink: 0; }
+    .d-circle.filled { background: #5c3a0a; border-color: #5c3a0a; }
 
     /* INSPIRATION */
-    .inspiration-box {
-      border: 1px solid #bbb; border-radius: 50%; width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 18px; transition: all 0.2s;
-      background: #f5edd8;
-    }
-    .inspiration-box.active { background: #c9963a; border-color: #a87828; }
+    .insp-box { border: 1.5px solid #c9963a; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; transition: all 0.3s; background: #f5edd8; color: #c9963a; }
+    .insp-box.active { background: #c9963a; color: #fff; box-shadow: 0 0 10px rgba(201,150,58,0.5); }
 
-    /* FOOTER */
-    .sheet-footer {
-      margin-top: 12px; padding-top: 8px; border-top: 1px solid #ccc;
-      text-align: center; font-family: 'Cinzel', serif; font-size: 7px;
-      color: #bbb; letter-spacing: 2px;
-    }
+    /* SKILLS / SAVES LIST */
+    .saves-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+    .skill-row, .save-row { display: flex; align-items: center; gap: 5px; padding: 2px 0; border-bottom: 1px dotted rgba(201,150,58,0.25); }
+    .s-circle { width: 10px; height: 10px; border: 1px solid #c9963a; border-radius: 50%; cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
+    .s-circle.on { background: #5c3a0a; border-color: #5c3a0a; }
+    .s-name { flex: 1; font-size: 11px; color: #1a0f05; font-family: 'Crimson Pro', serif; }
+    .s-attr { font-size: 9px; color: #a87828; font-family: 'Cinzel', serif; margin-right: 2px; }
+    .s-bonus { font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; min-width: 26px; text-align: right; color: #5c3a0a; }
 
-    /* PRINT */
+    /* MAIN 2-COL GRID */
+    .main-cols { display: grid; grid-template-columns: 200px 1fr; gap: 14px; }
+
+    /* WEAPONS TABLE */
+    .weapons-table { width: 100%; border-collapse: collapse; }
+    .weapons-table th { font-family: 'Cinzel', serif; font-size: 7px; color: #a87828; letter-spacing: 1px; padding: 4px 5px; border-bottom: 1.5px solid #c9963a; text-align: left; background: #f0e8d0; }
+    .weapons-table td { padding: 3px 5px; border-bottom: 1px solid rgba(201,150,58,0.3); }
+    .weapons-table td input { width: 100%; border: none; background: transparent; font-family: 'Crimson Pro', serif; font-size: 12px; color: #1a0f05; outline: none; }
+    .weapons-table tr:hover td { background: rgba(201,150,58,0.06); }
+
+    /* CHECKBOXES */
+    .check-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .check-item { display: flex; align-items: center; gap: 5px; font-family: 'Crimson Pro', serif; font-size: 12px; color: #1a0f05; cursor: pointer; }
+    .check-item input[type=checkbox] { accent-color: #5c3a0a; width: 13px; height: 13px; cursor: pointer; }
+
+    /* COINS */
+    .coins-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .coin-box { text-align: center; border: 1px solid #c9963a; border-radius: 4px; padding: 5px 3px; background: #f5edd8; }
+    .coin-label { font-family: 'Cinzel', serif; font-size: 7px; color: #a87828; display: block; margin-bottom: 2px; letter-spacing: 1px; }
+    .coin-input { width: 100%; border: none; background: transparent; text-align: center; font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; color: #5c3a0a; outline: none; }
+
+    /* SHEET FOOTER */
+    .sheet-footer { margin-top: 14px; padding-top: 8px; border-top: 1px solid #c9963a; text-align: center; font-family: 'Cinzel', serif; font-size: 7px; color: #a87828; letter-spacing: 2px; }
+
+    /* ── PAGE 2: ZAUBER ── */
+    .spell-header-grid { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; margin-bottom: 14px; }
+    .spell-stat-box { border: 1px solid #c9963a; border-radius: 4px; background: #f5edd8; padding: 8px 12px; }
+    .spell-stat-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+    .spell-stat-row:last-child { margin-bottom: 0; }
+    .spell-stat-label { font-family: 'Cinzel', serif; font-size: 7px; color: #a87828; letter-spacing: 1px; min-width: 120px; }
+    .spell-stat-val { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; color: #5c3a0a; min-width: 40px; text-align: center; }
+
+    .slot-grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px; }
+    .slot-box { border: 1px solid #c9963a; border-radius: 4px; padding: 5px 3px; text-align: center; background: #f5edd8; }
+    .slot-label { font-family: 'Cinzel', serif; font-size: 6px; color: #a87828; display: block; margin-bottom: 3px; letter-spacing: 1px; }
+    .slot-inputs { display: flex; gap: 2px; justify-content: center; }
+    .slot-inputs input { width: 28px; border: none; border-bottom: 1px solid #c9963a; background: transparent; text-align: center; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; color: #5c3a0a; outline: none; }
+    .slot-sep { font-size: 10px; color: #a87828; line-height: 20px; }
+
+    /* SPELL LIST TABLE */
+    .spell-table { width: 100%; border-collapse: collapse; }
+    .spell-table th { font-family: 'Cinzel', serif; font-size: 7px; color: #a87828; letter-spacing: 1px; padding: 4px 4px; border-bottom: 1.5px solid #c9963a; text-align: left; background: #f0e8d0; white-space: nowrap; }
+    .spell-table td { padding: 2px 4px; border-bottom: 1px solid rgba(201,150,58,0.2); vertical-align: middle; }
+    .spell-table td input { width: 100%; border: none; background: transparent; font-family: 'Crimson Pro', serif; font-size: 11px; color: #1a0f05; outline: none; }
+    .spell-table td input.grade { font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; color: #5c3a0a; text-align: center; }
+    .spell-table .kmr-cell { display: flex; gap: 4px; }
+    .kmr-check { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+    .kmr-lbl { font-family: 'Cinzel', serif; font-size: 5.5px; color: #a87828; }
+    .spell-table tr:hover td { background: rgba(201,150,58,0.05); }
+    .spell-section-row td { background: #f0e8d0 !important; font-family: 'Cinzel', serif; font-size: 7px; color: #5c3a0a; letter-spacing: 2px; padding: 4px 8px; font-weight: 600; border-bottom: 1px solid #c9963a; }
+
+    /* ── PAGE 3: HINTERGRUND ── */
+    .img-slot { border: 1.5px dashed #c9963a; border-radius: 4px; background: #f5edd8; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; position: relative; }
+    .img-slot input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .img-slot-label { font-family: 'Cinzel', serif; font-size: 9px; color: #a87828; letter-spacing: 1px; text-align: center; pointer-events: none; }
+    .img-slot img { width: 100%; height: 100%; object-fit: cover; display: none; }
+
+    .p3-grid { display: grid; grid-template-columns: 200px 1fr 200px; gap: 14px; }
+    .p3-right { display: flex; flex-direction: column; gap: 10px; }
+
+    /* ── PRINT ── */
     @media print {
-      body { background: white; padding: 0; }
-      .screen-nav { display: none; }
+      .nav, .feature-nav, .sheet-toolbar, .page-tabs, footer { display: none !important; }
+      body { background: white; }
+      .content-area { padding: 0; }
       .wrapper { max-width: 100%; }
-      .sheet { border: none; border-radius: 0; }
+      .page-panel { display: block !important; page-break-after: always; }
+      .page-panel:last-child { page-break-after: auto; }
+      .sheet { border: none; border-radius: 0; background: white; }
+      .tab-btn { display: none; }
     }
 
-    @media (max-width: 600px) {
-      body { padding: 10px; }
+    @media (max-width: 700px) {
       .attr-grid { grid-template-columns: repeat(3, 1fr); }
       .combat-grid { grid-template-columns: repeat(3, 1fr); }
-      .main-grid { grid-template-columns: 1fr; }
+      .main-cols { grid-template-columns: 1fr; }
+      .p3-grid { grid-template-columns: 1fr; }
+      .slot-grid { grid-template-columns: repeat(3, 1fr); }
+      .nav-by { display: none; }
     }
   </style>
 </head>
 <body>
+
+<!-- TOP NAV -->
+<nav class="nav">
+  <div style="display:flex;align-items:center;gap:20px;">
+    <a href="index.html" class="nav-brand">⧖ VELUNDR</a>
+    <span class="nav-by">von Halvard Eldgrim</span>
+  </div>
+  <a href="charaktererstellung.html" class="nav-back">← Zurück</a>
+</nav>
+
+<!-- FEATURE NAV -->
+<nav class="feature-nav">
+  <a href="charaktererstellung.html" class="feature-nav-item active">⚔️ Charaktererstellung</a>
+  <a href="randomizer.html" class="feature-nav-item">🎲 Randomizer</a>
+  <a href="handouts.html" class="feature-nav-item">📜 Handouts</a>
+  <a href="roadmap.html" class="feature-nav-item">🗺️ Roadmap</a>
+  <a href="kontakt.html" class="feature-nav-item">✉️ Kontakt</a>
+</nav>
+
+<!-- CONTENT -->
+<div class="content-area">
 <div class="wrapper">
 
-  <div class="screen-nav">
-    <a href="index.html" class="screen-logo">⧖ VELUNDR <span>CHARAKTERBOGEN D&D 2024</span></a>
-    <a href="charaktererstellung.html" style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;padding:8px 18px;background:transparent;border:1px solid #a87828;color:#a87828;border-radius:3px;text-decoration:none;margin-right:8px;">← Zurück</a><button class="btn-print" onclick="window.print()">🖨️ Drucken / PDF</button>
+  <div class="sheet-toolbar">
+    <button class="btn-print" onclick="window.print()">🖨️ Drucken / PDF</button>
   </div>
 
-  <div class="sheet" id="sheet">
+  <!-- PAGE TABS -->
+  <div class="page-tabs">
+    <button class="tab-btn active" onclick="showPage(0)">⚔️ Seite 1 — Charakter</button>
+    <button class="tab-btn" onclick="showPage(1)">✦ Seite 2 — Zaubern</button>
+    <button class="tab-btn" onclick="showPage(2)">📜 Seite 3 — Hintergrund</button>
+  </div>
 
-    <!-- HEADER -->
+  <!-- ══════════════════════════════════════════════
+       SEITE 1 — GRUNDDATEN / STATS / KAMPF
+  ══════════════════════════════════════════════ -->
+  <div class="page-panel active" id="page0">
+  <div class="sheet">
+
+    <!-- SHEET HEADER -->
     <div class="sheet-header">
-      <div>
-        <div class="sheet-logo">⧖ VELUNDR <small>CHARAKTERBOGEN · D&D 2024</small></div>
-      </div>
-      <div class="sheet-system">Dungeons & Dragons<br>2024 Edition · Deutsch</div>
+      <div class="sheet-logo">⧖ VELUNDR<small>CHARAKTERBOGEN · D&D 2024</small></div>
+      <div class="sheet-title">✦ &nbsp; DUNGEONS &amp; DRAGONS &nbsp; ✦</div>
+      <div class="sheet-system">2024 Edition · Deutsch<br><span style="font-size:8px;color:#c9963a;">Nicht offiziell · Kein WotC-Produkt</span></div>
     </div>
 
     <!-- GRUNDDATEN -->
     <div class="sec">
       <div class="field-row">
-        <div class="field" style="flex:2;"><span class="field-label">CHARAKTERNAME</span><input type="text" id="f-name" placeholder="Name deines Charakters" /></div>
-        <div class="field"><span class="field-label">KLASSE</span><input type="text" id="f-class" placeholder="z.B. Kämpfer" /></div>
-        <div class="field"><span class="field-label">UNTERKLASSE</span><input type="text" id="f-subclass" placeholder="z.B. Champion" /></div>
-        <div class="field"><span class="field-label">STUFE</span><input type="number" id="f-level" min="1" max="20" value="1" oninput="updAll()" style="font-family:'Cinzel',serif;font-size:16px;font-weight:700;" /></div>
+        <div class="field" style="flex:2.5">
+          <span class="field-label">Charaktername</span>
+          <input type="text" id="f-name" placeholder="Name deines Charakters" style="font-size:18px;font-family:'Cinzel',serif;font-weight:600;" />
+        </div>
+        <div class="field">
+          <span class="field-label">Klasse</span>
+          <input type="text" id="f-class" placeholder="z.B. Kämpfer" />
+        </div>
+        <div class="field">
+          <span class="field-label">Unterklasse</span>
+          <input type="text" id="f-subclass" placeholder="z.B. Champion" />
+        </div>
+        <div class="field" style="max-width:70px">
+          <span class="field-label">Stufe</span>
+          <input type="number" id="f-level" min="1" max="20" value="1" oninput="updAll()" style="font-family:'Cinzel',serif;font-size:18px;font-weight:700;" />
+        </div>
       </div>
       <div class="field-row">
-        <div class="field"><span class="field-label">VOLK (RASSE)</span><input type="text" id="f-race" placeholder="z.B. Elf" /></div>
-        <div class="field"><span class="field-label">HINTERGRUND</span><input type="text" id="f-bg" placeholder="z.B. Soldat" /></div>
-        <div class="field"><span class="field-label">GESINNUNG</span><input type="text" id="f-align" placeholder="z.B. Chaotisch Gut" /></div>
-        <div class="field"><span class="field-label">SPIELER</span><input type="text" placeholder="Dein Name" /></div>
-        <div class="field"><span class="field-label">EP</span><input type="number" placeholder="0" /></div>
+        <div class="field"><span class="field-label">Volk</span><input type="text" id="f-race" placeholder="z.B. Elf" /></div>
+        <div class="field"><span class="field-label">Hintergrund</span><input type="text" id="f-bg" placeholder="z.B. Soldat" /></div>
+        <div class="field"><span class="field-label">Gesinnung</span><input type="text" placeholder="z.B. Chaotisch Gut" /></div>
+        <div class="field"><span class="field-label">Spieler</span><input type="text" placeholder="Dein Name" /></div>
+        <div class="field" style="max-width:80px"><span class="field-label">Erfahrungspunkte</span><input type="number" placeholder="0" /></div>
       </div>
     </div>
 
+    <div class="ornament">— ✦ —</div>
+
     <!-- ATTRIBUTE -->
-    <div class="sec">
-      <div class="sec-title">Attribute</div>
+    <div class="sec" style="margin-top:10px;">
+      <div class="sec-title wide">Attribute</div>
       <div class="attr-grid">
         <div class="attr-box">
           <span class="attr-name">STÄRKE</span>
           <input class="attr-score" id="aSTR" type="number" min="1" max="30" value="10" oninput="updAll()" />
-          <span class="attr-mod-label">MODIFIKATOR</span>
-          <div class="attr-mod" id="mSTR">+0</div>
+          <div class="attr-mod-wrap"><span class="attr-mod-label">MODIFIKATOR</span><div class="attr-mod" id="mSTR">+0</div></div>
         </div>
         <div class="attr-box">
           <span class="attr-name">GESCHICKLICHKEIT</span>
           <input class="attr-score" id="aDEX" type="number" min="1" max="30" value="10" oninput="updAll()" />
-          <span class="attr-mod-label">MODIFIKATOR</span>
-          <div class="attr-mod" id="mDEX">+0</div>
+          <div class="attr-mod-wrap"><span class="attr-mod-label">MODIFIKATOR</span><div class="attr-mod" id="mDEX">+0</div></div>
         </div>
         <div class="attr-box">
           <span class="attr-name">KONSTITUTION</span>
           <input class="attr-score" id="aCON" type="number" min="1" max="30" value="10" oninput="updAll()" />
-          <span class="attr-mod-label">MODIFIKATOR</span>
-          <div class="attr-mod" id="mCON">+0</div>
+          <div class="attr-mod-wrap"><span class="attr-mod-label">MODIFIKATOR</span><div class="attr-mod" id="mCON">+0</div></div>
         </div>
         <div class="attr-box">
           <span class="attr-name">INTELLIGENZ</span>
           <input class="attr-score" id="aINT" type="number" min="1" max="30" value="10" oninput="updAll()" />
-          <span class="attr-mod-label">MODIFIKATOR</span>
-          <div class="attr-mod" id="mINT">+0</div>
+          <div class="attr-mod-wrap"><span class="attr-mod-label">MODIFIKATOR</span><div class="attr-mod" id="mINT">+0</div></div>
         </div>
         <div class="attr-box">
           <span class="attr-name">WEISHEIT</span>
           <input class="attr-score" id="aWIS" type="number" min="1" max="30" value="10" oninput="updAll()" />
-          <span class="attr-mod-label">MODIFIKATOR</span>
-          <div class="attr-mod" id="mWIS">+0</div>
+          <div class="attr-mod-wrap"><span class="attr-mod-label">MODIFIKATOR</span><div class="attr-mod" id="mWIS">+0</div></div>
         </div>
         <div class="attr-box">
           <span class="attr-name">CHARISMA</span>
           <input class="attr-score" id="aCHA" type="number" min="1" max="30" value="10" oninput="updAll()" />
-          <span class="attr-mod-label">MODIFIKATOR</span>
-          <div class="attr-mod" id="mCHA">+0</div>
+          <div class="attr-mod-wrap"><span class="attr-mod-label">MODIFIKATOR</span><div class="attr-mod" id="mCHA">+0</div></div>
         </div>
       </div>
     </div>
 
-    <!-- KAMPFWERTE + INSPIRATION -->
-    <div class="sec">
-      <div class="sec-title">Kampfwerte</div>
-      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;">
-        <div style="text-align:center;">
-          <span class="field-label" style="display:block;margin-bottom:4px;">HEROISCHE INSPIRATION</span>
-          <div class="inspiration-box" id="inspBox" onclick="toggleInsp()">✦</div>
+    <div class="ornament">— ✦ —</div>
+
+    <!-- KAMPFWERTE -->
+    <div class="sec" style="margin-top:10px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="text-align:center;flex-shrink:0;">
+          <div class="sec-title">Inspiration</div>
+          <div class="insp-box" id="inspBox" onclick="toggleInsp()">✦</div>
         </div>
         <div style="flex:1;">
+          <div class="sec-title wide">Kampfwerte</div>
           <div class="combat-grid">
-            <div class="combat-box"><span class="combat-label">RÜSTUNGSKLASSE</span><input class="combat-input" id="cAC" type="number" value="10" /></div>
-            <div class="combat-box"><span class="combat-label">INITIATIVE</span><div class="combat-input" id="cInit" style="padding-top:4px;">+0</div></div>
-            <div class="combat-box"><span class="combat-label">BEWEGUNGSRATE</span><input class="combat-input" placeholder="9m" /></div>
-            <div class="combat-box"><span class="combat-label">ÜBUNGSBONUS</span><div class="combat-input" id="cProf" style="padding-top:4px;">+2</div></div>
-            <div class="combat-box"><span class="combat-label">PASSIVE WAHRNEHMUNG</span><div class="combat-input" id="cPassPerc" style="padding-top:4px;">10</div></div>
+            <div class="combat-box"><span class="combat-label">RÜSTUNGSKLASSE</span><input class="combat-val" id="cAC" type="number" value="10" /></div>
+            <div class="combat-box"><span class="combat-label">INITIATIVE</span><div class="combat-val" id="cInit">+0</div></div>
+            <div class="combat-box"><span class="combat-label">BEWEGUNGSRATE</span><input class="combat-val" placeholder="9m" /></div>
+            <div class="combat-box"><span class="combat-label">ÜBUNGSBONUS</span><div class="combat-val" id="cProf">+2</div></div>
+            <div class="combat-box"><span class="combat-label">PASSIVE WAHRNEHMUNG</span><div class="combat-val" id="cPassPerc">10</div></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TP + TODESRETTUNG -->
+    <!-- TREFFERPUNKTE -->
     <div class="sec">
-      <div class="hp-section">
+      <div class="sec-title wide">Trefferpunkte & Todesrettungswürfe</div>
+      <div class="hp-grid">
         <div class="hp-box">
           <span class="hp-label">TREFFERPUNKTE MAXIMAL</span>
-          <input class="hp-input" type="number" id="cHP" placeholder="0" />
+          <input class="hp-input" type="number" placeholder="0" />
         </div>
         <div class="hp-box">
-          <span class="hp-label">AKTUELL / TEMPORÄR</span>
-          <div class="hp-sub">
-            <input style="flex:1;border:none;border-bottom:1px solid #bbb;background:transparent;text-align:center;font-size:14px;font-weight:700;outline:none;" type="number" placeholder="Aktuell" />
-            <input style="flex:1;border:none;border-bottom:1px solid #bbb;background:transparent;text-align:center;font-size:14px;outline:none;" type="number" placeholder="Temp" />
-          </div>
+          <span class="hp-label">AKTUELL</span>
+          <input class="hp-input" type="number" placeholder="0" />
+        </div>
+        <div class="hp-box">
+          <span class="hp-label">TEMPORÄR</span>
+          <input class="hp-input" type="number" placeholder="0" />
         </div>
       </div>
-      <div style="display:flex;gap:12px;align-items:center;padding:6px 0;">
-        <span class="field-label" style="font-size:7px;min-width:80px;">TODESRETTUNGSWÜRFE</span>
-        <div class="death-saves">
-          <span class="save-label">ERFOLGE</span>
-          <div class="save-group">
-            <div class="save-circle" onclick="this.classList.toggle('filled')"></div>
-            <div class="save-circle" onclick="this.classList.toggle('filled')"></div>
-            <div class="save-circle" onclick="this.classList.toggle('filled')"></div>
-          </div>
-          <span class="save-label" style="margin-left:8px;">FEHLSCHLÄGE</span>
-          <div class="save-group">
-            <div class="save-circle" onclick="this.classList.toggle('filled')"></div>
-            <div class="save-circle" onclick="this.classList.toggle('filled')"></div>
-            <div class="save-circle" onclick="this.classList.toggle('filled')"></div>
-          </div>
+      <div class="death-row">
+        <span class="death-label">TREFFERWÜRFEL</span>
+        <input type="text" style="border:none;border-bottom:1px solid #c9963a;background:transparent;font-size:13px;outline:none;width:65px;font-family:'Crimson Pro',serif;" placeholder="z.B. 1W10" />
+        <span style="flex:1"></span>
+        <span class="death-label">TODESRETTUNG — ERFOLGE</span>
+        <div class="circle-group">
+          <div class="d-circle" onclick="this.classList.toggle('filled')"></div>
+          <div class="d-circle" onclick="this.classList.toggle('filled')"></div>
+          <div class="d-circle" onclick="this.classList.toggle('filled')"></div>
         </div>
-        <div style="margin-left:auto;">
-          <span class="field-label">TREFFERWÜRFEL</span>
-          <input type="text" style="border:none;border-bottom:1px solid #bbb;background:transparent;font-size:12px;outline:none;width:60px;" placeholder="z.B. 1W10" />
+        <span class="death-label" style="margin-left:8px;">FEHLSCHLÄGE</span>
+        <div class="circle-group">
+          <div class="d-circle" onclick="this.classList.toggle('filled')"></div>
+          <div class="d-circle" onclick="this.classList.toggle('filled')"></div>
+          <div class="d-circle" onclick="this.classList.toggle('filled')"></div>
         </div>
       </div>
     </div>
 
-    <!-- MAIN GRID: RETTUNGSWÜRFE + FERTIGKEITEN | RECHTE SEITE -->
-    <div class="main-grid">
+    <div class="ornament">— ✦ —</div>
 
-      <!-- LINKE SEITE -->
+    <!-- MAIN: SAVES+SKILLS | RECHTS -->
+    <div class="main-cols" style="margin-top:10px;">
+
+      <!-- LINKE SPALTE: Rettungswürfe + Fertigkeiten -->
       <div>
-        <!-- RETTUNGSWÜRFE -->
         <div class="sec">
-          <div class="sec-title">Rettungswürfe</div>
+          <div class="sec-title wide">Rettungswürfe</div>
           <div id="savesGrid"></div>
         </div>
-
-        <!-- FERTIGKEITEN -->
-        <div class="sec">
-          <div class="sec-title">Fertigkeiten</div>
+        <div class="sec" style="margin-top:10px;">
+          <div class="sec-title wide">Fertigkeiten</div>
           <div id="skillsGrid"></div>
         </div>
       </div>
 
-      <!-- RECHTE SEITE -->
-      <div>
+      <!-- RECHTE SPALTE -->
+      <div style="display:flex;flex-direction:column;gap:12px;">
 
         <!-- WAFFEN -->
         <div class="sec">
-          <div class="sec-title">Waffen & Angriffszaubertricks</div>
+          <div class="sec-title wide">Waffen &amp; Angriffszaubertricks</div>
           <table class="weapons-table">
-            <thead>
-              <tr>
-                <th>NAME</th>
-                <th>BONUS / SG</th>
-                <th>SCHADEN & ART</th>
-                <th>NOTIZEN</th>
-              </tr>
-            </thead>
+            <thead><tr>
+              <th style="width:35%">NAME</th>
+              <th style="width:15%">BONUS / SG</th>
+              <th style="width:25%">SCHADEN &amp; ART</th>
+              <th>NOTIZEN</th>
+            </tr></thead>
             <tbody>
               <tr><td><input type="text" placeholder="Waffe..." /></td><td><input type="text" placeholder="+0" /></td><td><input type="text" placeholder="1W6 Hieb" /></td><td><input type="text" /></td></tr>
+              <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td></tr>
               <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td></tr>
               <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td></tr>
               <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td></tr>
@@ -381,172 +439,365 @@
           </table>
         </div>
 
-        <!-- AUSRÜSTUNG + MÜNZEN -->
+        <!-- GEÜBT IM UMGANG MIT -->
         <div class="sec">
-          <div class="sec-title">Ausrüstung & Münzen</div>
-          <div class="coins-grid" style="margin-bottom:8px;">
-            <div class="coin-box"><span class="coin-label">TM</span><input class="coin-input" type="number" placeholder="0" /></div>
+          <div class="sec-title wide">Geübt im Umgang mit</div>
+          <div class="sec-box">
+            <div style="margin-bottom:6px;">
+              <span class="field-label">RÜSTUNG</span>
+              <div class="check-row" style="margin-top:3px;">
+                <label class="check-item"><input type="checkbox" /> Leichte</label>
+                <label class="check-item"><input type="checkbox" /> Mittlere</label>
+                <label class="check-item"><input type="checkbox" /> Schwere</label>
+                <label class="check-item"><input type="checkbox" /> Schilde</label>
+              </div>
+            </div>
+            <div class="field"><span class="field-label">WAFFEN</span><input type="text" placeholder="z.B. Einfache Waffen, Kriegswaffen..." /></div>
+            <div class="field" style="margin-top:6px;"><span class="field-label">WERKZEUGE</span><input type="text" placeholder="z.B. Diebeswerkzeug..." /></div>
+          </div>
+        </div>
+
+        <!-- TALENTE & KLASSENMERKMALE -->
+        <div class="sec">
+          <div class="sec-title wide">Talente &amp; Klassenmerkmale</div>
+          <textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:7px;outline:none;resize:none;min-height:90px;" placeholder="Talente, Klassenmerkmale, Volksmerkmale..."></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sheet-footer">VELUNDR · HALVARD ELDGRIM · VELUNDR.COM · NICHT OFFIZIELL · KEIN PRODUKT VON WIZARDS OF THE COAST · SEITE 1</div>
+  </div><!-- /sheet -->
+  </div><!-- /page0 -->
+
+
+  <!-- ══════════════════════════════════════════════
+       SEITE 2 — ZAUBERN
+  ══════════════════════════════════════════════ -->
+  <div class="page-panel" id="page1">
+  <div class="sheet">
+
+    <div class="sheet-header">
+      <div class="sheet-logo">⧖ VELUNDR<small>ZAUBERBOGEN · D&D 2024</small></div>
+      <div class="sheet-title">✦ &nbsp; ZAUBERN &nbsp; ✦</div>
+      <div class="sheet-system">2024 Edition · Deutsch</div>
+    </div>
+
+    <!-- ZAUBER-STATS + PLÄTZE -->
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:16px;margin-bottom:14px;align-items:start;">
+
+      <!-- LINKE SEITE: Zauber-Stats -->
+      <div style="min-width:180px;">
+        <div class="sec-title wide">Zauberwirken</div>
+        <div class="sec-box" style="margin-bottom:8px;">
+          <div style="margin-bottom:6px;">
+            <span class="field-label">ATTRIBUT ZUM ZAUBERWIRKEN</span>
+            <input type="text" style="border:none;border-bottom:1px solid #c9963a;background:transparent;font-size:14px;font-family:'Cinzel',serif;font-weight:700;color:#5c3a0a;outline:none;width:100%;" placeholder="z.B. INT" id="spellAttr" oninput="updSpell()" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,150,58,0.3);padding-bottom:4px;">
+              <span class="spell-stat-label" style="font-family:'Cinzel',serif;font-size:7px;color:#a87828;letter-spacing:1px;">ZAUBERMODIFIKATOR</span>
+              <span id="spellMod" style="font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:#5c3a0a;">—</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,150,58,0.3);padding-bottom:4px;">
+              <span class="spell-stat-label" style="font-family:'Cinzel',serif;font-size:7px;color:#a87828;letter-spacing:1px;">RETTUNGSWURF-SG</span>
+              <span id="spellSave" style="font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:#5c3a0a;">—</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="spell-stat-label" style="font-family:'Cinzel',serif;font-size:7px;color:#a87828;letter-spacing:1px;">ANGRIFFSBONUS</span>
+              <span id="spellAtk" style="font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:#5c3a0a;">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECHTE SEITE: Zauberplätze -->
+      <div>
+        <div class="sec-title wide">Zauberplätze</div>
+        <div class="slot-grid">
+          <div class="slot-box"><span class="slot-label">GRAD 1</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+          <div class="slot-box"><span class="slot-label">GRAD 2</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+          <div class="slot-box"><span class="slot-label">GRAD 3</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+          <div class="slot-box"><span class="slot-label">GRAD 4</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+          <div class="slot-box"><span class="slot-label">GRAD 5</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+          <div class="slot-box"><span class="slot-label">GRAD 6</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+          <div class="slot-box"><span class="slot-label">GRAD 7</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+          <div class="slot-box"><span class="slot-label">GRAD 8</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+          <div class="slot-box"><span class="slot-label">GRAD 9</span><div class="slot-inputs"><input placeholder="Ges." /><span class="slot-sep">/</span><input placeholder="Vbr." /></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ornament">— ✦ —</div>
+
+    <!-- ZAUBERLISTE -->
+    <div class="sec" style="margin-top:10px;">
+      <div class="sec-title wide">Zaubertricks &amp; Vorbereitete Zauber</div>
+      <table class="spell-table">
+        <thead>
+          <tr>
+            <th style="width:4%">GRD</th>
+            <th style="width:28%">NAME</th>
+            <th style="width:10%">AUFWAND</th>
+            <th style="width:10%">REICHWEITE</th>
+            <th style="width:12%">K &nbsp; R &nbsp; M</th>
+            <th>NOTIZEN / MATERIALIEN</th>
+          </tr>
+        </thead>
+        <tbody id="spellBody">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sheet-footer">VELUNDR · HALVARD ELDGRIM · VELUNDR.COM · NICHT OFFIZIELL · KEIN PRODUKT VON WIZARDS OF THE COAST · SEITE 2</div>
+  </div>
+  </div><!-- /page1 -->
+
+
+  <!-- ══════════════════════════════════════════════
+       SEITE 3 — HINTERGRUND / AUSRÜSTUNG
+  ══════════════════════════════════════════════ -->
+  <div class="page-panel" id="page2">
+  <div class="sheet">
+
+    <div class="sheet-header">
+      <div class="sheet-logo">⧖ VELUNDR<small>HINTERGRUND · D&D 2024</small></div>
+      <div class="sheet-title">✦ &nbsp; HINTERGRUND &amp; AUSRÜSTUNG &nbsp; ✦</div>
+      <div class="sheet-system">2024 Edition · Deutsch</div>
+    </div>
+
+    <!-- OBERES DRITTEL: Bild + Persönlichkeit + Hintergrundfelder -->
+    <div class="p3-grid">
+
+      <!-- LINKS: Charakterbild -->
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="sec-title wide">Charakterbild</div>
+        <div class="img-slot" style="height:240px;" id="imgSlot">
+          <input type="file" accept="image/*" onchange="loadImg(this)" />
+          <img id="charImg" />
+          <div class="img-slot-label" id="imgLabel">✦<br>Bild<br>einfügen</div>
+        </div>
+        <div class="sec-box" style="margin-top:4px;">
+          <div class="field"><span class="field-label">GESINNUNG</span><input type="text" placeholder="z.B. Rechtschaffen Gut" /></div>
+          <div class="field" style="margin-top:6px;"><span class="field-label">GOTTHEIT / GLAUBE</span><input type="text" placeholder="z.B. Tyr" /></div>
+          <div class="field" style="margin-top:6px;"><span class="field-label">ALTER / GRÖẞE / GEWICHT</span><input type="text" placeholder="z.B. 30 / 1,80m / 80kg" /></div>
+        </div>
+      </div>
+
+      <!-- MITTE: Persönlichkeit -->
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="sec-title wide">Persönlichkeit</div>
+        <div class="field"><span class="field-label">PERSÖNLICHKEITSMERKMAL</span><textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:55px;" placeholder="Wie verhält sich dein Charakter?"></textarea></div>
+        <div class="field"><span class="field-label">IDEAL</span><textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:50px;" placeholder="Woran glaubt dein Charakter?"></textarea></div>
+        <div class="field"><span class="field-label">BINDUNG</span><textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:50px;" placeholder="Was schützt dein Charakter?"></textarea></div>
+        <div class="field"><span class="field-label">SCHWÄCHE</span><textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:50px;" placeholder="Was ist die Schwäche deines Charakters?"></textarea></div>
+        <div class="field"><span class="field-label">AUSSEHEN</span><textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:50px;" placeholder="Augen, Haare, besondere Merkmale..."></textarea></div>
+      </div>
+
+      <!-- RECHTS: Sprachen + Ausrüstung + Münzen -->
+      <div class="p3-right">
+        <div>
+          <div class="sec-title wide">Sprachen</div>
+          <textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:60px;" placeholder="z.B. Gemeinsprache, Elfisch, Zwergisch..."></textarea>
+        </div>
+        <div>
+          <div class="sec-title wide">Münzen</div>
+          <div class="coins-row">
+            <div class="coin-box"><span class="coin-label">KM</span><input class="coin-input" type="number" placeholder="0" /></div>
             <div class="coin-box"><span class="coin-label">SM</span><input class="coin-input" type="number" placeholder="0" /></div>
             <div class="coin-box"><span class="coin-label">EM</span><input class="coin-input" type="number" placeholder="0" /></div>
             <div class="coin-box"><span class="coin-label">GM</span><input class="coin-input" type="number" placeholder="0" /></div>
             <div class="coin-box"><span class="coin-label">PM</span><input class="coin-input" type="number" placeholder="0" /></div>
           </div>
-          <textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:60px;" placeholder="Ausrüstung, Gegenstände..."></textarea>
         </div>
-
-        <!-- GEÜBT IM UMGANG MIT -->
-        <div class="sec">
-          <div class="sec-title">Rüstung — Geübt im Umgang mit</div>
-          <div style="display:flex;gap:10px;margin-bottom:6px;">
-            <label style="display:flex;align-items:center;gap:4px;font-size:11px;cursor:pointer;"><input type="checkbox" /> Leichte</label>
-            <label style="display:flex;align-items:center;gap:4px;font-size:11px;cursor:pointer;"><input type="checkbox" /> Mittlere</label>
-            <label style="display:flex;align-items:center;gap:4px;font-size:11px;cursor:pointer;"><input type="checkbox" /> Schwere</label>
-            <label style="display:flex;align-items:center;gap:4px;font-size:11px;cursor:pointer;"><input type="checkbox" /> Schilde</label>
+        <div style="flex:1;">
+          <div class="sec-title wide">Ausrüstung</div>
+          <textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:120px;" placeholder="Ausrüstung, Gegenstände, Vorräte..."></textarea>
+        </div>
+        <div>
+          <div class="sec-title wide">Eingest. mag. Gegenstände</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <input type="text" style="border:none;border-bottom:1px solid #c9963a;background:transparent;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;outline:none;padding:2px;" placeholder="✦ Gegenstand 1" />
+            <input type="text" style="border:none;border-bottom:1px solid #c9963a;background:transparent;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;outline:none;padding:2px;" placeholder="✦ Gegenstand 2" />
+            <input type="text" style="border:none;border-bottom:1px solid #c9963a;background:transparent;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;outline:none;padding:2px;" placeholder="✦ Gegenstand 3" />
           </div>
-          <textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:5px;outline:none;resize:none;min-height:35px;" placeholder="Waffen, Werkzeuge..."></textarea>
-        </div>
-
-        <!-- TALENTE + KLASSENMERKMALE -->
-        <div class="sec">
-          <div class="sec-title">Talente & Klassenmerkmale</div>
-          <textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:70px;" placeholder="Talente, Klassenmerkmale, Volksmerkmale..."></textarea>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ZAUBERPLÄTZE -->
-    <div class="sec">
-      <div class="sec-title">Zaubern — Attribut: <input type="text" style="border:none;border-bottom:1px solid #bbb;background:transparent;font-size:11px;outline:none;width:60px;" placeholder="INT" /> &nbsp; Modifikator: <span id="spellMod">—</span> &nbsp; Rettungswurf-SG: <span id="spellSave">—</span> &nbsp; Angriffsbonus: <span id="spellAtk">—</span></div>
-      <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-bottom:8px;">
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 1</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 2</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 3</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 4</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 5</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 6</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 7</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 8</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-        <div class="spell-slot"><span class="spell-slot-label">GRAD 9</span><input class="spell-slot-input" type="text" placeholder="0/0" /></div>
-      </div>
-      <textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:6px;outline:none;resize:none;min-height:60px;" placeholder="Zaubertricks & vorbereitete Zauber..."></textarea>
-    </div>
-
-    <!-- HINTERGRUND & PERSÖNLICHKEIT -->
-    <div class="sec">
-      <div class="sec-title">Hintergrundgeschichte & Persönlichkeit</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div>
-          <div class="field-row"><div class="field"><span class="field-label">GESINNUNG</span><input type="text" placeholder="z.B. Rechtschaffen Gut" /></div></div>
-          <div class="field-row"><div class="field"><span class="field-label">GOTTHEIT / GLAUBE</span><input type="text" placeholder="z.B. Tyr" /></div></div>
-          <div class="field-row"><div class="field"><span class="field-label">ALTER / GRÖẞE / GEWICHT</span><input type="text" placeholder="z.B. 30 / 1,80m / 80kg" /></div></div>
-          <div class="field-row"><div class="field"><span class="field-label">AUSSEHEN</span><textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:5px;outline:none;resize:none;min-height:50px;" placeholder="Augen, Haare, Besonderheiten..."></textarea></div></div>
-          <div class="field-row"><div class="field"><span class="field-label">SPRACHEN</span><textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:5px;outline:none;resize:none;min-height:35px;" placeholder="z.B. Gemeinsprache, Elfisch..."></textarea></div></div>
-        </div>
-        <div>
-          <div class="field-row"><div class="field"><span class="field-label">PERSÖNLICHKEITSMERKMAL</span><textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:5px;outline:none;resize:none;min-height:40px;" placeholder="Wie verhält sich dein Charakter?"></textarea></div></div>
-          <div class="field-row"><div class="field"><span class="field-label">IDEAL</span><textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:5px;outline:none;resize:none;min-height:35px;" placeholder="Woran glaubt dein Charakter?"></textarea></div></div>
-          <div class="field-row"><div class="field"><span class="field-label">BINDUNG</span><textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:5px;outline:none;resize:none;min-height:35px;" placeholder="Was schützt dein Charakter?"></textarea></div></div>
-          <div class="field-row"><div class="field"><span class="field-label">SCHWÄCHE</span><textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:5px;outline:none;resize:none;min-height:35px;" placeholder="Was ist die Schwäche deines Charakters?"></textarea></div></div>
-          <div class="field-row"><div class="field"><span class="field-label">HINTERGRUNDGESCHICHTE</span><textarea style="width:100%;border:1px solid #ddd;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:11px;color:#1a0f05;padding:5px;outline:none;resize:none;min-height:40px;" placeholder="Die Geschichte deines Charakters..."></textarea></div></div>
         </div>
       </div>
     </div>
 
-    <div class="sheet-footer">VELUNDR · HALVARD ELDGRIM · VELUNDR.COM · NICHT OFFIZIELL · KEIN PRODUKT VON WIZARDS OF THE COAST</div>
+    <div class="ornament" style="margin:12px 0;">— ✦ —</div>
+
+    <!-- HINTERGRUNDGESCHICHTE + NOTIZEN -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div>
+        <div class="sec-title wide">Hintergrundgeschichte</div>
+        <textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:8px;outline:none;resize:none;min-height:160px;" placeholder="Die Geschichte deines Charakters..."></textarea>
+      </div>
+      <div>
+        <div class="sec-title wide">Notizen &amp; Sonstiges</div>
+        <textarea style="width:100%;border:1px solid #c9963a;border-radius:3px;background:#f5edd8;font-family:'Crimson Pro',serif;font-size:12px;color:#1a0f05;padding:8px;outline:none;resize:none;min-height:160px;" placeholder="Verbündete, Feinde, Notizen..."></textarea>
+      </div>
+    </div>
+
+    <div class="sheet-footer">VELUNDR · HALVARD ELDGRIM · VELUNDR.COM · NICHT OFFIZIELL · KEIN PRODUKT VON WIZARDS OF THE COAST · SEITE 3</div>
   </div>
+  </div><!-- /page2 -->
 
-</div>
+</div><!-- /wrapper -->
+</div><!-- /content-area -->
+
+<!-- SITE FOOTER -->
+<footer style="padding: 16px 40px; border-top: 1px solid #d4b870; text-align: center; background: #e8d9b0;">
+  <div style="font-family: 'Cinzel', serif; font-size: 12px; color: #5c3a0a; letter-spacing: 2px; font-weight: 600; margin-bottom: 3px;">Halvard Eldgrim</div>
+  <div style="font-size: 11px; color: #a08050;">© 2026 Andreas Hoffmann · Waldkappel-Bischhausen</div>
+  <div style="margin-top: 6px; font-size: 11px;">
+    <a href="impressum.html" style="color: #a08050; text-decoration: none; margin: 0 8px;">Impressum</a>
+    <a href="datenschutz.html" style="color: #a08050; text-decoration: none; margin: 0 8px;">Datenschutz</a>
+    <a href="kontakt.html" style="color: #a08050; text-decoration: none; margin: 0 8px;">Kontakt</a>
+  </div>
+</footer>
 
 <script>
+/* ── DATA ── */
 const PROF_TBL = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6];
-
 const SAVES = [
-  {n:'Stärke', a:'STR'}, {n:'Geschicklichkeit', a:'DEX'}, {n:'Konstitution', a:'CON'},
-  {n:'Intelligenz', a:'INT'}, {n:'Weisheit', a:'WIS'}, {n:'Charisma', a:'CHA'}
+  {n:'Stärke',a:'STR'},{n:'Geschicklichkeit',a:'DEX'},{n:'Konstitution',a:'CON'},
+  {n:'Intelligenz',a:'INT'},{n:'Weisheit',a:'WIS'},{n:'Charisma',a:'CHA'}
 ];
-
 const SKILLS = [
-  {n:'Akrobatik', a:'DEX'}, {n:'Arkane Kunde', a:'INT'}, {n:'Athletik', a:'STR'},
-  {n:'Auftreten', a:'CHA'}, {n:'Einschüchtern', a:'CHA'}, {n:'Fingerfertigkeit', a:'DEX'},
-  {n:'Geschichte', a:'INT'}, {n:'Heilkunde', a:'WIS'}, {n:'Heimlichkeit', a:'DEX'},
-  {n:'Mit Tieren umgehen', a:'WIS'}, {n:'Motiv erkennen', a:'WIS'}, {n:'Nachforschungen', a:'INT'},
-  {n:'Naturkunde', a:'INT'}, {n:'Überlebenskunst', a:'WIS'}, {n:'Überzeugen', a:'CHA'},
-  {n:'Täuschen', a:'CHA'}, {n:'Wahrnehmung', a:'WIS'}, {n:'Religion', a:'INT'}
+  {n:'Akrobatik',a:'DEX'},{n:'Arkane Kunde',a:'INT'},{n:'Athletik',a:'STR'},
+  {n:'Auftreten',a:'CHA'},{n:'Einschüchtern',a:'CHA'},{n:'Fingerfertigkeit',a:'DEX'},
+  {n:'Geschichte',a:'INT'},{n:'Heilkunde',a:'WIS'},{n:'Heimlichkeit',a:'DEX'},
+  {n:'Mit Tieren umgehen',a:'WIS'},{n:'Motiv erkennen',a:'WIS'},{n:'Nachforschungen',a:'INT'},
+  {n:'Naturkunde',a:'INT'},{n:'Überlebenskunst',a:'WIS'},{n:'Überzeugen',a:'CHA'},
+  {n:'Täuschen',a:'CHA'},{n:'Wahrnehmung',a:'WIS'},{n:'Religion',a:'INT'}
 ];
+const AM = {STR:'aSTR',DEX:'aDEX',CON:'aCON',INT:'aINT',WIS:'aWIS',CHA:'aCHA'};
 
-const AM = {STR:'aSTR', DEX:'aDEX', CON:'aCON', INT:'aINT', WIS:'aWIS', CHA:'aCHA'};
 const v = id => document.getElementById(id);
-const getMod = s => Math.floor(((parseInt(s)||10) - 10) / 2);
-const fmt = n => n >= 0 ? '+'+n : ''+n;
+const getMod = s => Math.floor(((parseInt(s)||10)-10)/2);
+const fmt = n => n>=0?'+'+n:''+n;
 
-let profSkills = new Set();
-let profSaves = new Set();
-let inspired = false;
+let profSkills = new Set(), profSaves = new Set(), inspired = false;
 
 function getProf() {
-  const l = Math.min(20, Math.max(1, parseInt(v('f-level').value)||1));
-  return PROF_TBL[l-1];
+  return PROF_TBL[Math.min(20,Math.max(1,parseInt(v('f-level').value)||1))-1];
 }
 
 function updAll() {
   const prof = getProf();
   v('cProf').textContent = fmt(prof);
   v('cInit').textContent = fmt(getMod(v('aDEX').value));
-  v('cPassPerc').textContent = 10 + getMod(v('aWIS').value) + (profSkills.has('Wahrnehmung') ? prof : 0);
-
+  v('cPassPerc').textContent = 10+getMod(v('aWIS').value)+(profSkills.has('Wahrnehmung')?prof:0);
   ['STR','DEX','CON','INT','WIS','CHA'].forEach(a => {
     v('m'+a).textContent = fmt(getMod(v('a'+a).value));
   });
-
-  buildSaves(prof);
-  buildSkills(prof);
+  buildSaves(prof); buildSkills(prof); updSpell();
 }
 
 function buildSaves(prof) {
-  const g = v('savesGrid'); g.innerHTML = '';
+  const g = v('savesGrid'); g.innerHTML='';
   SAVES.forEach(s => {
     const base = getMod(v(AM[s.a]).value);
-    const bonus = profSaves.has(s.n) ? base + prof : base;
-    const row = document.createElement('div');
-    row.className = 'save-row';
-    const circle = document.createElement('div');
-    circle.className = 'skill-circle' + (profSaves.has(s.n) ? ' on' : '');
-    circle.onclick = () => {
-      profSaves.has(s.n) ? profSaves.delete(s.n) : profSaves.add(s.n);
-      updAll();
-    };
-    row.appendChild(circle);
-    row.innerHTML += `<span class="skill-name">${s.n}</span><span class="skill-attr">${s.a}</span><span class="skill-bonus">${fmt(bonus)}</span>`;
-    row.insertBefore(circle, row.firstChild);
+    const bonus = profSaves.has(s.n) ? base+prof : base;
+    const row = document.createElement('div'); row.className='save-row';
+    const c = document.createElement('div'); c.className='s-circle'+(profSaves.has(s.n)?' on':'');
+    c.onclick=()=>{ profSaves.has(s.n)?profSaves.delete(s.n):profSaves.add(s.n); updAll(); };
+    row.appendChild(c);
+    const nm = document.createElement('span'); nm.className='s-name'; nm.textContent=s.n; row.appendChild(nm);
+    const at = document.createElement('span'); at.className='s-attr'; at.textContent=s.a; row.appendChild(at);
+    const bx = document.createElement('span'); bx.className='s-bonus'; bx.textContent=fmt(bonus); row.appendChild(bx);
     g.appendChild(row);
   });
 }
 
 function buildSkills(prof) {
-  const g = v('skillsGrid'); g.innerHTML = '';
+  const g = v('skillsGrid'); g.innerHTML='';
   SKILLS.forEach(s => {
     const base = getMod(v(AM[s.a]).value);
-    const bonus = profSkills.has(s.n) ? base + prof : base;
-    const row = document.createElement('div');
-    row.className = 'skill-row';
-    const circle = document.createElement('div');
-    circle.className = 'skill-circle' + (profSkills.has(s.n) ? ' on' : '');
-    circle.onclick = () => {
-      profSkills.has(s.n) ? profSkills.delete(s.n) : profSkills.add(s.n);
-      updAll();
-    };
-    row.innerHTML = `<span class="skill-name">${s.n} <span class="skill-attr">(${s.a})</span></span><span class="skill-bonus">${fmt(bonus)}</span>`;
-    row.insertBefore(circle, row.firstChild);
+    const bonus = profSkills.has(s.n) ? base+prof : base;
+    const row = document.createElement('div'); row.className='skill-row';
+    const c = document.createElement('div'); c.className='s-circle'+(profSkills.has(s.n)?' on':'');
+    c.onclick=()=>{ profSkills.has(s.n)?profSkills.delete(s.n):profSkills.add(s.n); updAll(); };
+    row.appendChild(c);
+    const nm = document.createElement('span'); nm.className='s-name'; nm.textContent=s.n; row.appendChild(nm);
+    const at = document.createElement('span'); at.className='s-attr'; at.textContent='('+s.a+')'; row.appendChild(at);
+    const bx = document.createElement('span'); bx.className='s-bonus'; bx.textContent=fmt(bonus); row.appendChild(bx);
     g.appendChild(row);
   });
 }
 
-function toggleInsp() {
-  inspired = !inspired;
-  v('inspBox').classList.toggle('active', inspired);
+function updSpell() {
+  const attr = (v('spellAttr')?.value||'').toUpperCase().trim();
+  const attrId = 'a'+attr;
+  const el = v(attrId);
+  if (!el) { ['spellMod','spellSave','spellAtk'].forEach(i=>v(i)&&(v(i).textContent='—')); return; }
+  const mod = getMod(el.value);
+  const prof = getProf();
+  if(v('spellMod')) v('spellMod').textContent = fmt(mod);
+  if(v('spellSave')) v('spellSave').textContent = 8+mod+prof;
+  if(v('spellAtk')) v('spellAtk').textContent = fmt(mod+prof);
 }
 
+function toggleInsp() {
+  inspired=!inspired;
+  v('inspBox').classList.toggle('active',inspired);
+}
+
+/* ── PAGE TABS ── */
+function showPage(idx) {
+  document.querySelectorAll('.page-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+}
+
+/* ── IMAGE UPLOAD ── */
+function loadImg(input) {
+  const file = input.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = v('charImg'); const lbl = v('imgLabel');
+    img.src = e.target.result; img.style.display='block';
+    if(lbl) lbl.style.display='none';
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ── SPELL TABLE ── */
+function buildSpellTable() {
+  const tbody = v('spellBody');
+  const sections = [
+    {label:'ZAUBERTRICKS', rows:6},
+    {label:'GRAD 1', rows:8},{label:'GRAD 2', rows:6},{label:'GRAD 3', rows:6},
+    {label:'GRAD 4', rows:5},{label:'GRAD 5', rows:5},{label:'GRAD 6', rows:4},
+    {label:'GRAD 7', rows:4},{label:'GRAD 8', rows:3},{label:'GRAD 9', rows:3},
+  ];
+  sections.forEach(sec => {
+    const hrow = document.createElement('tr'); hrow.className='spell-section-row';
+    hrow.innerHTML=`<td colspan="6">${sec.label}</td>`;
+    tbody.appendChild(hrow);
+    for(let i=0;i<sec.rows;i++) {
+      const row = document.createElement('tr');
+      row.innerHTML=`
+        <td><input class="grade" type="text" /></td>
+        <td><input type="text" /></td>
+        <td><input type="text" placeholder="1 Akt." /></td>
+        <td><input type="text" placeholder="18m" /></td>
+        <td>
+          <div class="kmr-cell">
+            <div class="kmr-check"><span class="kmr-lbl">K</span><input type="checkbox" style="accent-color:#5c3a0a;width:11px;height:11px;" /></div>
+            <div class="kmr-check"><span class="kmr-lbl">R</span><input type="checkbox" style="accent-color:#5c3a0a;width:11px;height:11px;" /></div>
+            <div class="kmr-check"><span class="kmr-lbl">M</span><input type="checkbox" style="accent-color:#5c3a0a;width:11px;height:11px;" /></div>
+          </div>
+        </td>
+        <td><input type="text" /></td>
+      `;
+      tbody.appendChild(row);
+    }
+  });
+}
+
+/* ── INIT ── */
+buildSpellTable();
 updAll();
 </script>
 </body>
