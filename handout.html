@@ -96,6 +96,12 @@
     .print-btn { width: 100%; padding: 11px; margin-top: 16px; background: #5c3a0a; border: none; border-radius: 3px; color: #f5edd8; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
     .print-btn:hover { background: #7a5020; }
 
+    /* FARBWÄHLER */
+    .color-picker { display: flex; gap: 8px; flex-wrap: wrap; }
+    .color-swatch { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
+    .color-swatch:hover { transform: scale(1.15); }
+    .color-swatch.selected { border-color: #5c3a0a; box-shadow: 0 0 0 2px #f5edd8, 0 0 0 4px #5c3a0a; }
+
     /* VORSCHAU */
     .editor-preview { background: #e0d0b0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 20px; gap: 12px; }
     .preview-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; color: #7a5020; align-self: flex-start; }
@@ -423,6 +429,19 @@
       <div class="editor-fields">
         <span class="fields-label">FELDER AUSFÜLLEN</span>
 
+        <!-- SCHRIFTFARBE -->
+        <div class="field-group" style="margin-bottom:18px;">
+          <label class="field-label">SCHRIFTFARBE</label>
+          <div class="color-picker">
+            <div class="color-swatch selected" data-color="#3a1a05" style="background:#3a1a05;" onclick="selectColor(this,'#3a1a05')" title="Dunkelbraun"></div>
+            <div class="color-swatch" data-color="#f0d080" style="background:#f0d080;" onclick="selectColor(this,'#f0d080')" title="Goldgelb"></div>
+            <div class="color-swatch" data-color="#f5edd8" style="background:#f5edd8;border-color:#c9963a;" onclick="selectColor(this,'#f5edd8')" title="Pergament"></div>
+            <div class="color-swatch" data-color="#1a1a2e" style="background:#1a1a2e;" onclick="selectColor(this,'#1a1a2e')" title="Tintenblau"></div>
+            <div class="color-swatch" data-color="#111111" style="background:#111111;" onclick="selectColor(this,'#111111')" title="Schwarz"></div>
+            <div class="color-swatch" data-color="#8b0000" style="background:#8b0000;" onclick="selectColor(this,'#8b0000')" title="Blutrot"></div>
+          </div>
+        </div>
+
         <!-- STECKBRIEF -->
         <div id="f-steckbrief">
           <div class="field-group"><label class="field-label">NAME DES GESUCHTEN</label><input class="field-input" id="s-name" placeholder="Kira die Schattenmesser" oninput="up()"></div>
@@ -676,6 +695,7 @@
 let currentStep = 1;
 let selectedBg = 'hell';
 let selectedTemplate = 'steckbrief';
+let selectedColor = '#3a1a05';
 
 const BG_STYLES = {
   hell: "url('103.jpg') center/cover",
@@ -715,6 +735,26 @@ function applyBg() {
   document.querySelectorAll('.handout').forEach(h => {
     h.style.background = BG_STYLES[selectedBg];
   });
+  applyColor();
+}
+
+function selectColor(el, color) {
+  document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedColor = color;
+  applyColor();
+}
+
+function applyColor() {
+  const handout = document.getElementById('p-' + selectedTemplate);
+  if (!handout) return;
+  handout.querySelectorAll('*').forEach(el => {
+    // Nur Textelemente färben, keine Hintergründe/Rahmen
+    const tag = el.tagName.toLowerCase();
+    if (['div','span','p','td','th','h1','h2','h3','h4'].includes(tag)) {
+      el.style.color = selectedColor;
+    }
+  });
 }
 
 function selectTemplate(el, name) {
@@ -727,6 +767,7 @@ function selectTemplate(el, name) {
     document.getElementById('p-' + t).style.display = t === name ? 'block' : 'none';
   });
   applyBg();
+  applyColor();
 }
 
 function v(id) { const el = document.getElementById(id); return el ? el.value || el.placeholder : ''; }
